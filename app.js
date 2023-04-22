@@ -1,12 +1,3 @@
-// Obtenemos el botón "Crear cuenta"
-const signupBtn = document.getElementById("signup-btn");
-
-// Agregamos un event listener para detectar el clic en el botón
-signupBtn.addEventListener("click", () => {
-  // Redireccionamos a la página de registro
-  window.location.href = "crearcuenta.html";
-});
-
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyANSEcsrnbzVJ8i6-eOqv-pewPaeImdORg",
