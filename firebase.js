@@ -1,5 +1,18 @@
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Obtener el icono de información y el contenedor de información
+var infoIcon = document.querySelector('#info-icon-container i');
+var infoContainer = document.querySelector('#info-container');
+
+// Mostrar u ocultar el contenedor de información al hacer clic en el icono de información
+infoIcon.addEventListener('click', function() {
+    if (infoContainer.style.display === 'none') {
+        infoContainer.style.display = 'block';
+    } else {
+        infoContainer.style.display = 'none';
+    }
+});
+
 
 
 const firebaseConfig = {
@@ -46,28 +59,33 @@ const firebaseConfig = {
     }
 
     $("#submit-btn").on('click',()=>{
-        let name = $("#name").val();
-        let hours = $("#hours").val();
-        let publications = $("#publications").val();
-        let visits = $("#visits").val();
-        let biblecourses = $("#biblecourses").val();
-        let supervisor = $("#supervisor").val();
+        let nombre = $("#name").val();
+        let horas = $("#hours").val();
+        let publicaciones = $("#publications").val();
+        let revisitas = $("#visits").val();
+        let cursosbiblicos= $("#biblecourses").val();
+        let superintendente = $("#supervisor").val();
         let videos = $("#videos").val();
+        let notas = $('#notes').val();
 
         const user = {
-            name,
-            hours,
-            publications,
-            visits,
-            biblecourses,
-            supervisor,
-            videos
+            nombre,
+            horas,
+            publicaciones,
+            revisitas,
+            cursosbiblicos,
+            superintendente,
+            videos,
+            notas
 
         }
-
+        
         SaveUser(user);
 
     })
+
+
+      
 
     
 

@@ -12,30 +12,42 @@
 	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 	<script src="sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="sweetalert2.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
+	<div id="info-icon-container">
+		<i class="fas fa-info-circle"></i>
+		<div id="info-container">
+			<h2>Información sobre la página</h2>
+			<p>Este sitio web ha sido desarrollado con la intención de servir a la comunidad de manera gratuita y sin fines de lucro. Fue creado como respuesta a una necesidad en la congregación, con el objetivo de facilitar la comunicación y la difusión de información relevante.</p>
+			<p>Además, se ha trabajado para garantizar la seguridad de la información y la privacidad de los usuarios.
+				Este sitio web es un ejemplo del poder que tiene la tecnología para facilitar la colaboración y la comunicación.</p>
+				<h3>Creado y diseñado por: Leonardo Gonzalez</h3>
+		</div>
+	</div>
+	
 
 	<a href="iniciosesion.html"><button id="login-btn">Iniciar Sesión</button></a>
 
-
+	<i class="fa-sharp fa-solid fa-circle-info"></i>
 	<div id="form-container">
 		<h2>Informe del mes de Abril</h2>
 		<form id="report-form">
 			<label for="name">Nombre completo:</label>
-			<input type="text" id="name" name="name" placeholder="Nombre completo" required autofocus>
+			<input type="text" id="name" name="name" placeholder="Nombre completo" autofocus>
 
 			<label for="publications">Número de publicaciones:</label>
-			<input type="number" id="publications" name="publications" placeholder="Numero de publicaciones" required>
+			<input type="number" id="publications" name="publications" placeholder="Numero de publicaciones">
 
 			<label for="hours">Número de horas:</label>
-			<input type="number" id="hours" name="hours" placeholder="Numero de Horas" required>
+			<input type="number" id="hours" name="hours" placeholder="Numero de Horas">
 
 			<label for="visits">Número de revisitas:</label>
-			<input type="number" id="visits" name="visits" placeholder="Numero de Revisitas" required>
+			<input type="number" id="visits" name="visits" placeholder="Numero de Revisitas">
 
 			<label for="biblecourses">Número de cursos bíblicos:</label>
-			<input type="number" id="biblecourses" name="biblecourses" placeholder="Numero de cursos biblicos" required>
+			<input type="number" id="biblecourses" name="biblecourses" placeholder="Numero de cursos biblicos">
 
 			<label for="videos">Número de videos:</label>
 			<input type="number" id="videos" name="videos" placeholder="Numero de videos" required>
@@ -43,14 +55,18 @@
 			<label for="supervisor">Superintendente de Grupo:</label>
 			<select id="supervisor" name="supervisor" placeholder="Superintendente de Grupo">
 				<option value="" selected>Seleccione una opción</option>
-				<option value="Alfonso Grupo 1">Alfonso Grupo 1</option>
-				<option value="Rafael Grupo 2">Rafael Grupo 2</option>
-				<option value="Alberto Grupo 3">Alberto Grupo 3</option>
-				<option value="Josue Grupo 4">Josue Grupo 4</option>
+				<option value="Alfonso.P Grupo 1">Alfonso Grupo 1</option>
+				<option value="Rafael.G  Grupo 2">Rafael Grupo 2</option>
+				<option value="Alberto.G Grupo 3">Alberto Grupo 3</option>
+				<option value="Josue.T Grupo 4">Josue Grupo 4</option>
 			</select>
+			<label for="notes">Notas:</label>
+			<textarea id="notes" name="notes" placeholder="Escriba sus notas aquí"></textarea>
 
 			<button type="reset" id="clear-btn">Limpiar</button>
 			<button type="button" id="submit-btn">Enviar</button>
+
+			
 		</form>
 	</div>
 

@@ -1,3 +1,7 @@
+body{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 #login-btn {
 	position: absolute;
 	top: 50px;
@@ -23,6 +27,10 @@ h2 {
 	text-align: center;
 	margin-bottom: 30px;
 }
+h3{
+	text-align: center;
+	margin-bottom: 10px;
+}
 
 form label {
 	display: block;
@@ -39,8 +47,13 @@ form input, form select {
 	margin-bottom: 20px;
 	text-align: center;
 }
-
+	textarea {
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-size: 18px;
+	width: 100%;
+ }
 #submit-btn{
+	margin-top: 10px;
 	padding: 10px 20px;
 	background-color: #2196F3;
 	color: #fff;
@@ -51,6 +64,7 @@ form input, form select {
 }
 
 #clear-btn {
+	margin-top: 10px;
 	padding: 10px 20px;
 	background-color: #f3f33ee1;
 	color: #000000;
@@ -63,6 +77,41 @@ form input, form select {
 #clear-btn:hover, #submit-btn:hover {
 	background-color: #3EB489;
 }
+#info-icon-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#info-icon-container i {
+    font-size: 24px;
+}
+
+#info-container {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: absolute;
+    top: 60px;
+	right: 8px;
+	left: -300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: none;
+
+}
+
+#info-container h2 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+#info-container p {
+    margin-bottom: 0;
+}
+
 
 @media screen and (max-width: 640px) {
 	#form-container {
