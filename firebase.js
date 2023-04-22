@@ -34,7 +34,7 @@ const firebaseConfig = {
             'Buen Trabajo',
             'Datos guardados correctamente',
             'success',
-            '#ffffff' // Cambiar el color de fondo a blanco
+            'white' // Cambiar el color de fondo a blanco
         )
     }
 
