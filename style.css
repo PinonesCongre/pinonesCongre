@@ -64,6 +64,10 @@ form input, form select {
 	background-color: #3EB489;
 }
 
+.swal2-popup {
+  background-color: #ffffff; /* color claro */
+}
+
 @media screen and (max-width: 600px) {
 	header {
 		flex-direction: column;
