@@ -33,8 +33,7 @@ const firebaseConfig = {
         Swal.fire(
             'Buen Trabajo',
             'Datos guardados correctamente',
-            'success',
-            'white' // Cambiar el color de fondo a blanco
+            'success'
         )
     }
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión</title>
+  <link rel="stylesheet" href="login.css">
+  <!-- Firebase App (el primer script debe ir primero) -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="center">
+  <div class="container">
+    <header>
+      <h1>Iniciar sesión</h1>
+    </header>
+   
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+      </div>
+      <button type="submit" id="login-btn">Ingresar</button>
+      <button type="button" id="signup-btn">Crear cuenta</button> <!--Este solo se mantendra activo hasta que todos tengan una cuenta-->
+    </form>
+  </div>
+</div>
+</body>
+<script src="app.js"></script>
+</html>
