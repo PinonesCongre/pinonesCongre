@@ -68,21 +68,25 @@ form input, form select {
   background-color: #ffffff; /* color claro */
 }
 
-@media screen and (max-width: 600px) {
-	header {
-		flex-direction: column;
-	}
-
-	h1 {
-		margin-bottom: 10px;
-	}
-
-	input[type="text"], select {
-		width: calc(100% - 40px);
-	}
-
-	input[type="submit"], input[type="button"] {
-		margin-top: 16px;
-	}
+@media screen and (max-width: 640px) {
+  #form-container {
+    margin: 50px auto; /* ajustar el margen superior */
+    width: 90%; /* ajustar el ancho del contenedor */
+  }
+  
+  form input, form select {
+    font-size: 16px; /* ajustar el tamaño de fuente de los inputs */
+  }
+  
+  #login-btn {
+    top: 30px; /* ajustar la posición del botón de login */
+    left: 30px;
+    padding: 8px 16px; /* ajustar el padding del botón */
+    font-size: 16px; /* ajustar el tamaño de fuente del botón */
+  }
+  
+  #submit-btn, #clear-btn {
+    padding: 8px 16px; /* ajustar el padding de los botones */
+    font-size: 16px; /* ajustar el tamaño de fuente de los botones */
+  }
 }
-
