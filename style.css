@@ -79,10 +79,10 @@ form input, form select {
   }
   
   #login-btn {
-    top: 30px; /* ajustar la posición del botón de login */
-    left: 30px;
-    padding: 8px 16px; /* ajustar el padding del botón */
-    font-size: 16px; /* ajustar el tamaño de fuente del botón */
+    top: 10px; /* ajustar la posición del botón de login */
+    left: 10px;
+    padding: 6px 12px; /* ajustar el padding del botón */
+    font-size: 14px; /* ajustar el tamaño de fuente del botón */
   }
   
   #submit-btn, #clear-btn {
