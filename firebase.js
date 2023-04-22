@@ -31,10 +31,10 @@ const firebaseConfig = {
 
     const MJSQK = ()=>{
         Swal.fire(
-        title: 'Buen Trabajo',
-        text: 'Datos guardados correctamente',
-        icon: 'success',
-        background: '#ffffff' // Cambiar el color de fondo a blanco
+            'Buen Trabajo',
+            'Datos guardados correctamente',
+            'success',
+            '#ffffff' // Cambiar el color de fondo a blanco
         )
     }
 
