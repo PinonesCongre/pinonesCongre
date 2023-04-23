@@ -85,7 +85,11 @@ form input, form select {
 	margin-right: 10px;
 }
 
-#clear-btn:hover, #submit-btn:hover {
+#clear-btn:hover{
+	background-color: #bf2a2a;
+	color: #ffff;
+}
+#submit-btn:hover{
 	background-color: #3EB489;
 }
 #info-icon-container {
