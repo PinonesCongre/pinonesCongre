@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Administracion Piñones</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'><link rel="stylesheet" href="./stylevis.css">
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="viewport">
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <header>
+      <p>Panel de Administracion</p>
+    </header>
+    <ul class="nav">
+      <li>
+        <a href="/vis.html">
+          <i class="zmdi zmdi-view-dashboard"></i> Informes
+        </a>
+      </li>
+      <li>
+        <a href="/crearcuentas.html">
+          <i class="zmdi zmdi-widgets"></i> Crear Cuentas
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Content -->
+  <div id="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" id="usuario"> </a></li>
+          <li><a href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+        <!--<li><a href="logout.php">Cerrar Sesión</a></li>-->  
+        </ul>
+      </div>
+    </nav>    
+    <div class="container-fluid">
+      <h1>Informes del mes de Abril</h1>
+      <iframe id="looker" width="1250" height="600" src="https://lookerstudio.google.com/embed/reporting/191f507f-50f4-4136-8ae6-222a9e508ce8/page/xc9ND" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  
+</body>
+<script src="logout.js"></script>
+</html>

@@ -1,25 +1,24 @@
-<!DOCTYPE html>
 <html lang="es">
-
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Congregacion Piñones</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congregacion Pinones</title>
+    <link id="theme-link" rel="stylesheet" href="/ligth.css">
+    <link rel= "stylesheet" type= "text/css" herf= "http.//fonts.googleapis.com/css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8dca05f736.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-lr5z5Z5i5wtYltPp17LKtEMxeMYiZXyfzK25I1F8WltiNQ9mZnp1DMH3q8oWrx6gFQD7y1HX52ovGM90TNUhOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-	<script src="sweetalert2.min.js"></script>
-	<link rel="stylesheet" href="sweetalert2.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 </head>
-
-<body>
-	<div id="info-icon-container">
+</head>
+<body>    
+<!-- Informacion sobre la pagina-->
+    <div id="info-icon-container">
 		<i class="fas fa-info-circle"></i>
 		<div id="info-container">
 			<h2>Información sobre la página</h2>
@@ -30,54 +29,59 @@
 		</div>
 	</div>
 	
-
-	<a href="iniciosesion.html"><button id="login-btn">Iniciar Sesión</button></a>
-
+    <!--Login -->
+	
+    <!--icono para la informacion de la pagina-->
 	<i class="fa-sharp fa-solid fa-circle-info"></i>
-	<div id="form-container">
-		<h2>Informe del mes de Abril</h2>
-		<form id="report-form">
-			<label for="name">Nombre completo:</label>
-			<input type="text" id="name" name="name" placeholder="Nombre completo" autofocus>
+    <!--Boton para cambiar el tema a oscuro-->
+    <button type="button" class="dark-mode-button" id="dark-mode" onclick="document.documentElement.classList.toggle('dark-mode')">
+        <img id="dark"src="/img/day.png"  alt="">
+    </button>
+    
+    <!--Inicio de Formulario-->
+    <div id="form-container">
+        <h2>Informes mes de Mayo</h2>
+        <form id="report-form">
+            <!--Nombre-->
+            <label for="name">Nombre Completo: </label>
+            <input type=text" name="name" id="name" placeholder="Nombre Completo" autofocus>
+            <!--Publicaciones-->
+            <label for="publicaciones">Numero de Publicaciones: </label>
+            <input type="number" name="publicaciones" id="publications" placeholder="Numero de Publicaciones">
+            <!--Numeros de Horas-->
+            <label for="horas">Numero de Horas: </label>
+            <input type="number" name="horas" id="hours" placeholder="Numero de Horas">
+            <!--Revisitas-->
+            <label for="revisitas">Numero de Revisitas: </label>
+            <input type="number" name="revisitas" id="visits" placeholder="Numero de Revisitas">
+            <!--Cursos Biblicos-->
+            <label for="cursoBiblicos">Numero de Cursos Biblicos: </label>
+            <input type="number" name="cursosBiblicos" id="bibleCourse" placeholder="Numero de Curso Biblicos">
+            <!--Videos-->
+            <label for="videos">Numero de Videos: </label>
+            <input type="number" name="videos" id="videos" placeholder="Numero de Videos">
+            <!--Grupos de Servicios-->
+            <label for="supervisor">Superintendete de Servicio: </label>
+            <select name="supervisor" id="supervisor" placeholder="Superintendete de Servicio">
+                    <option value="">Seleccione una opcion </option>
+                    <option value="Alfonso.P Grupo 1">Alfonso.P Grupo 1</option>
+                    <option value="Rafael.C Grupo 2">Rafael.C Grupo 2</option>
+                    <option value="Alberto.G Grupo 3">Alberto.G Grupo 3</option>
+                    <option value="Josue.T Grupo 4">Josue.T Grupo 4</option>
+            </select>
+            <!--Notas-->
+            <label for="notes">Notas: </label>
+            <textarea id="notes" name="notes" placeholder="Escriba sus notas aquí"></textarea>
 
-			<label for="publications">Número de publicaciones:</label>
-			<input type="number" id="publications" name="publications" placeholder="Numero de publicaciones">
+            <!--botones de envio y limpieza-->
 
-			<label for="hours">Número de horas:</label>
-			<input type="number" id="hours" name="hours" placeholder="Numero de Horas">
+            <button type="reset" id="clear-btn">Limpiar</button>
+			<button type="submit" id="submit-btn">Enviar</button>
+            <!--Login -->
+	        <a href="/login.html"><button  type="button" id="login-btn">¿Ya tiene cuenta registrada?</button></a>
 
-			<label for="visits">Número de revisitas:</label>
-			<input type="number" id="visits" name="visits" placeholder="Numero de Revisitas">
-
-			<label for="biblecourses">Número de cursos bíblicos:</label>
-			<input type="number" id="biblecourses" name="biblecourses" placeholder="Numero de cursos biblicos">
-
-			<label for="videos">Número de videos:</label>
-			<input type="number" id="videos" name="videos" placeholder="Numero de videos" required>
-
-			<label for="supervisor">Superintendente de Grupo:</label>
-			<select id="supervisor" name="supervisor" placeholder="Superintendente de Grupo">
-				<option value="" selected>Seleccione una opción</option>
-				<option value="Alfonso.P Grupo 1">Alfonso Grupo 1</option>
-				<option value="Rafael.G  Grupo 2">Rafael Grupo 2</option>
-				<option value="Alberto.G Grupo 3">Alberto Grupo 3</option>
-				<option value="Josue.T Grupo 4">Josue Grupo 4</option>
-			</select>
-			<label for="notes">Notas:</label>
-			<textarea id="notes" name="notes" placeholder="Escriba sus notas aquí"></textarea>
-
-			<button type="reset" id="clear-btn">Limpiar</button>
-			<button type="button" id="submit-btn">Enviar</button>
-
-			
-		</form>
-	</div>
-
-
+        </form>
+    </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-	integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="firebase.js"></script>
-
+<script src="script.js"></script>
 </html>
