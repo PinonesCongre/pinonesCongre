@@ -1,3 +1,24 @@
+//responsive
+const mobileScreen = window.matchMedia("(max-width: 990px )");
+$(document).ready(function () {
+    $(".dashboard-nav-dropdown-toggle").click(function () {
+        $(this).closest(".dashboard-nav-dropdown")
+            .toggleClass("show")
+            .find(".dashboard-nav-dropdown")
+            .removeClass("show");
+        $(this).parent()
+            .siblings()
+            .removeClass("show");
+    });
+    $(".menu-toggle").click(function () {
+        if (mobileScreen.matches) {
+            $(".dashboard-nav").toggleClass("mobile-show");
+        } else {
+            $(".dashboard").toggleClass("dashboard-compact");
+        }
+    });
+});
+
 $(document).ready(function() {
   $('#registro-form').validate({
     rules: {
@@ -50,33 +71,23 @@ const firebaseConfig = {
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
-  
-      // Send password reset email
-      user.sendPasswordResetEmail().then(function() {
-        // Email sent.
-        console.log('Password reset email sent');
-      }).catch(function(error) {
-        // An error happened.
-        console.error('Error sending password reset email', error);
-      });
+      Swal.fire({
+        icon: 'success',
+        title: '¡Cuenta registrada con éxito!',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      })
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      alert(errorMessage);
     });
+  
   
 
   }
-
-  
-   // Verifica si el usuario ha iniciado sesión
-   firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // Si el usuario ha iniciado sesión, muestra su correo electrónico
-      document.getElementById("usuario").innerHTML = user.email;
-    }
-  });
     
     function cerrarSesion() {
       firebase.auth().signOut().then(function() {

@@ -1,0 +1,35 @@
+
+.form-group{
+    margin: 100px auto;
+    padding: 25px;
+    background-color: whitesmoke;
+    border-radius: 35px;
+    border: 10px solid #cccc;
+    width: 500px;
+}
+
+
+form input, form select{
+    display: block;
+    padding: 10px;
+    border: 5px solid #cccc;
+    border-radius: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+#submit-btn{
+	top: 50px;
+	left: 50px;
+	padding: 10px 25px;
+	background-color: #2196F3;
+	color: #fff;
+	border: none;
+	border-radius: 15px;
+	cursor: pointer;
+	font-family: 'Dongle', sans-serif;
+
+}

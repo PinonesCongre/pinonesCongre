@@ -66,7 +66,7 @@ const firebaseConfig = {
                 timer: 1500
               }).then((result) => {
                 // Después de que el usuario haga clic en el botón de confirmación o después de que se cierre automáticamente, redirigir a la nueva página
-                window.location.href = 'vis.html';
+                window.location.href = 'dashboard.html';
               });
             })
               .catch((error) => {
