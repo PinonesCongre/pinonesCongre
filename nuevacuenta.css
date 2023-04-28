@@ -385,6 +385,44 @@ h1, .h1 {
     background-color: rgba(236, 238, 239, 0.3);
 }
 
+
+.form-group{
+    width: 50%;
+    margin: 100px auto;
+    padding: 25px;
+    background-color: whitesmoke;
+    border-radius: 35px;
+    border: 10px solid #cccc;
+    width: 500px;
+}
+
+
+form input, form select{
+    display: block;
+    padding: 10px;
+    border: 5px solid #cccc;
+    border-radius: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+    
+}
+
+
+#submit-btn{
+	top: 50px;
+	left: 50px;
+	padding: 10px 25px;
+	background-color: #2196F3;
+	color: #fff;
+	border: none;
+	border-radius: 15px;
+	cursor: pointer;
+	font-family: 'Dongle', sans-serif;
+
+}
+
 @media (min-width: 992px) {
     .dashboard-app {
         margin-left: 238px;
@@ -392,6 +430,9 @@ h1, .h1 {
 
     .dashboard-compact .dashboard-app {
         margin-left: 0;
+    }
+    .form-group{
+        width: 100%;
     }
 }
 
@@ -416,6 +457,9 @@ h1, .h1 {
     .dashboard-nav.mobile-show {
         display: block;
     }
+    .form-group{
+        width: 100%;
+    }
 }
 
 @media (max-width: 992px) {
@@ -424,6 +468,9 @@ h1, .h1 {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+    }
+    .form-group{
+        width: 100%;
     }
 }
 
@@ -434,5 +481,8 @@ h1, .h1 {
 
     .dashboard-compact .dashboard-toolbar {
         left: 0;
+    }
+    .form-group{
+        width: 100%;
     }
 }
