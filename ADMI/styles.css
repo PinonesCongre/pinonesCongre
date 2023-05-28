@@ -39,3 +39,8 @@ body{
     width: 300px;
     height: 200px;
   }
+
+  .modal-open {
+    overflow: hidden;
+  }
+  
