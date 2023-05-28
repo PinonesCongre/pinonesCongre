@@ -1,0 +1,207 @@
+body{
+	background-color: whitesmoke;
+	font-family: 'Chivo Mono', monospace;;
+}
+
+#submit-btn{
+    position: unset;
+	margin-top: 10px;
+	padding: 10px 20px;
+	background-color: #2196F3;
+	color: #fff;
+	border: none;
+	border-radius: 15px;
+	cursor: pointer;
+	margin-right: 10px;
+    display: block;
+}
+
+#home{
+    top: 25px;
+	left: 25px;
+	padding: 10px 20px;
+	background-color: whitesmoke;
+	color: none;
+	border: none;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+#form-container{
+    margin: 100px auto;
+    padding: 25px;
+    background-color: whitesmoke;
+    border-radius: 35px;
+    border: 10px solid #cccc;
+    width: 500px;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+form label{
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input, form select{
+    display: block;
+    padding: 10px;
+    border: 5px solid #cccc;
+    border-radius: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+
+#info-icon-container {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    cursor: pointer;
+}
+
+#info-icon-container i {
+    font-size: 24px;
+}
+
+#info-container {
+	font-family: 'Dongle', sans-serif;
+    position: absolute;
+    top: 60px;
+	right: 8px;
+	left: -300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: none;
+
+}
+
+#info-container h2 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+#info-container p {
+    margin-bottom: 0;
+}
+
+
+/*#home{
+	padding: 10px 20px;
+	background-color: whitesmoke;
+	color: none;
+	border: none;
+	cursor: pointer;
+	margin-right: 10px;
+}
+*/
+
+.home{
+    top: 25px;
+	left: 25px;
+	padding: 10px 40px;
+	background-color: whitesmoke;
+	color: none;
+	border: none;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+#home{
+    position: relative;
+    border-radius: none;
+    top: 3px;
+    left: -15px;
+    width: 35px;
+}
+#dark{
+	width: 35px;
+	height: 35px;
+	border-radius: none;
+}
+
+.dark-mode-button{
+    top: 25px;
+	left: 25px;
+	padding: 10px 20px;
+	background-color: whitesmoke;
+	color: none;
+	border: none;
+	cursor: pointer;
+	margin-right: 10px;
+}
+html.dark-mode{
+	filter: invert(100%);
+}
+
+/*responsivo */
+@media (max-width:1200px){
+	#form-container {
+		margin: 50px auto; /* ajustar el margen superior */
+		width: 65%; /* ajustar el ancho del contenedor */
+	  }
+	  
+	  form input, form select {
+		font-size: 16px; /* ajustar el tamaño de fuente de los inputs */
+	  }
+
+}
+
+
+@media (max-width:850px){
+	#form-container {
+		margin: 50px auto; /* ajustar el margen superior */
+		width: 60%; /* ajustar el ancho del contenedor */
+	  }
+	  
+	  form input, form select {
+		font-size: 16px; /* ajustar el tamaño de fuente de los inputs */
+	  }
+	  
+}
+
+
+@media (max-width: 640px) {
+	#form-container {
+	  margin: 50px auto; /* ajustar el margen superior */
+	  width: 80%; /* ajustar el ancho del contenedor */
+	}
+	
+	form input, form select {
+	  font-size: 16px; /* ajustar el tamaño de fuente de los inputs */
+	}
+	
+  }
+
+  @media (max-width: 480px) {
+	#form-container {
+	  margin: 50px auto; /* ajustar el margen superior */
+	  width: 75%; /* ajustar el ancho del contenedor */
+	}
+	
+	form input, form select {
+	  font-size: 16px; /* ajustar el tamaño de fuente de los inputs */
+	}
+	
+  }
+
+  @media (max-width: 320px) {
+	#form-container {
+	  margin: 50px auto; /* ajustar el margen superior */
+	  width: 65%; /* ajustar el ancho del contenedor */
+	}
+	
+	form input, form select {
+	  font-size: 16px; /* ajustar el tamaño de fuente de los inputs */
+	}
+	
+  }
