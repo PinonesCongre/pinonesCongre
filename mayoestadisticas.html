@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administracion Piñones</title>
+  <link rel="icon" href="img/favicon.ico">
+  <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/8dca05f736.js"></script>
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="ADMI/styles.css">
+  <!-- Agrega la biblioteca DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+    <script src="JS/bloqueo.js"></script>
+    <style>
+        /* Reglas CSS para centrar el contenido y aumentar el tamaño del gráfico */
+        canvas {
+            margin-left: 50px;
+          width: 800px;
+          height: 100%;
+        }
+        .container{
+            margin-top:150px;
+        }
+        
+        /* Media query para pantallas pequeñas */
+        @media (max-width: 767px) {
+          canvas {
+            margin-left: 5px;
+            width: 25%;
+            height: 300px;
+          }
+        }
+
+        @media(max-width:375px){
+            canvas{
+                width: 25%;
+            }
+        }
+      </style>
+      
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+       <!-- Menú lateral -->
+       <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/cards.html"><img src="ADMI/favicon.ico" height="35px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+            <a class="nav-link" href="/cards.html">
+                <i class="fas fa-home mr-2"></i>
+                Inicio
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/informes.html">
+              <i class="fas fa-book mr-2"></i>
+                Informes
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/historial.html">
+                <i class="fas fa-history mr-2"></i>
+                Historial
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/cuenta.html">
+                <i class="fas fa-question mr-2"></i>
+               Ayuda
+            </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/estadisticas.html">
+                <i class="fas fa-project-diagram mr-2"></i>
+                 Estadisticas
+              </a>
+              </li>
+             <!-- Agrega el botón de cerrar sesión -->
+            <li class="nav-item">
+              <a class="nav-link" href="/login.html" id="cerrar-sesion">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Cerrar sesión
+              </a>
+            </li>
+           
+        </ul>
+        </div>
+    </nav>
+        
+        <script>
+            // Agregar la clase "show" al menú al hacer clic en el botón de hamburguesa
+            document.querySelector(".navbar-toggler").addEventListener("click", function() {
+            document.querySelector("#navbarCollapse").classList.toggle("show");
+            });
+        </script>
+      <!-- Contenido principal -->
+       <!-- Gráficos -->
+       <div class="container">
+        <!-- Contenido principal -->
+        <canvas id="grafico1"></canvas>
+      </div>
+           
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Librería de iconos -->
+  <script src="https://kit.fontawesome.com/your_kit_id.js"></script>
+
+  <!-- Scripts de Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+
+<!-- Scripts de DataTables -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.js"></script>
+
+<!-- Scripts de Chart.js -->
+<script>
+  // Datos del primer gráfico
+  var data1 = {
+    labels: ["Publicaciones", "Videos", "Horas", "Revisitas", "Cursos"],
+    datasets: [
+      {
+        label: "Totales Mayo",
+        data: [544, 254, 1210, 425, 49],
+        backgroundColor:['rgba(255, 99, 132, 0.7)',
+                      'rgba(54, 162, 235, 0.7)',
+                      'rgba(255, 206, 86, 0.7)',
+                      'rgba(75, 192, 192, 0.7)',
+                      'rgba(153, 102, 255, 0.7)'],
+        fill: false,
+        borderColor: [
+                      'rgba(255,99,132,1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)'
+                  ],
+        borderWidth: 1
+      }
+    ],
+  };
+
+  // Opciones del primer gráfico
+  var options1 = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  // Crear el primer gráfico
+  var grafico1 = new Chart(document.getElementById("grafico1"), {
+    type: "bar",
+    data: data1,
+    options: options1,
+  });
+</script>
+
+<script>
+  document.getElementById('cerrar-sesion').addEventListener('click', function(event) {
+    event.preventDefault();
+    Swal.fire({
+      icon: 'success',
+      title: 'Sesión cerrada con éxito',
+      showConfirmButton: false,
+      timer: 1500
+    }).then(function() {
+      window.location.href = '/login.html';
+    });
+  });
+</script>
+</body>
+</html>

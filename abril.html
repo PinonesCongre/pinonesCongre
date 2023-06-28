@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administracion Piñones</title>
+  <link rel="icon" href="img/favicon.ico">
+  <script src="https://kit.fontawesome.com/8dca05f736.js"></script>
+  <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Agrega la biblioteca DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+    <script src="JS/bloqueo.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+        <!-- Menú lateral -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+          <a class="navbar-brand" href="/cards.html"><img src="ADMI/favicon.ico" height="35px"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+              <a class="nav-link" href="/cards.html">
+                  <i class="fas fa-home mr-2"></i>
+                  Inicio
+              </a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="/informes.html">
+                <i class="fas fa-book mr-2"></i>
+                  Informes
+              </a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link active" href="/historial.html">
+                  <i class="fas fa-history mr-2"></i>
+                  Historial
+              </a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="/cuenta.html">
+                  <i class="fas fa-question mr-2"></i>
+                 Ayuda
+              </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/estadisticas.html">
+                  <i class="fas fa-project-diagram mr-2"></i>
+                   Estadisticas
+                </a>
+                </li>
+               <!-- Agrega el botón de cerrar sesión -->
+              <li class="nav-item">
+                <a class="nav-link" href="/login.html" id="cerrar-sesion">
+                  <i class="fas fa-sign-out-alt mr-2"></i>
+                  Cerrar sesión
+                </a>
+              </li>
+             
+          </ul>
+          </div>
+      </nav>
+        
+        <script>
+            // Agregar la clase "show" al menú al hacer clic en el botón de hamburguesa
+            document.querySelector(".navbar-toggler").addEventListener("click", function() {
+            document.querySelector("#navbarCollapse").classList.toggle("show");
+            });
+        </script>
+      <!-- Contenido principal -->
+      
+      <div class="container mt-5" style="padding-top: 50px;">
+        <h2>  Informes de Abril</h2>
+        <div class="row">
+          <div class="col-sm-6 col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Grupo 1</h5>
+                <p class="card-text">Informes Completos</p>
+                <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1XRwQznShZciraqo0X9G5O3JQw0cDpyEQ" download>Descargar Informe</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Grupo 2</h5>
+                <p class="card-text">Informes Completos</p>
+                <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1USV7KQwAh4VMesq5UWuNgYGZmKgNprnOymycZj0l6lY/export?format=xlsx" download>Descargar Informe</a>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Grupo 3</h5>
+                <p class="card-text">Informes Faltantes no enviados, solicitarlos al secretario.</p>
+                <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1BFYyQlWDsqGUfiloz44b0LYxvHZWZtU8" download>Descargar Informe</a>
+              </div>
+            </div>
+      </div>
+    
+    <div class="col-sm-6 col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Grupo 4</h5>
+          <p class="card-text">Informes Completos</p>
+          <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1QVAlHQiv0jFTxI1b-FboQ_asKJzaebBh" download>Descargar Informe</a>
+        </div>
+      </div>
+  </div>
+  <div class="col-sm-6 col-md-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Informes Completos de Abril</h5>
+        <p class="card-text">Permite la descarga de todos los informes enviados durante el mes de Abril.</p>
+        <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1cwiIYOQb9hUuDrGFhN5r7bC9WwEPd1jzb2mIEGk3Q3s/export?format=xlsx" download>Descargar Informe</a>
+      </div>
+    </div>
+</div>
+
+  </div>
+
+  <!-- Librería de iconos -->
+  <script src="https://kit.fontawesome.com/your_kit_id.js"></script>
+  <script>
+    document.getElementById('cerrar-sesion').addEventListener('click', function(event) {
+      event.preventDefault();
+      Swal.fire({
+        icon: 'success',
+        title: 'Sesión cerrada con éxito',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        window.location.href = '/login.html';
+      });
+    });
+  </script>
+</body>
+</html>
