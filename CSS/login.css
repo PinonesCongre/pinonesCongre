@@ -1,8 +1,21 @@
-body{
-	background-color: whitesmoke;
-	font-family: 'Chivo Mono', monospace;;
+body {
+    background-color: whitesmoke;
+    font-family: 'Chivo Mono', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
+#form-container {
+    padding: 25px;
+    background-color: whitesmoke;
+    border-radius: 35px;
+    border: 10px solid #cccc;
+    width: 500px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
 #submit-btn{
     position: unset;
 	margin-top: 10px;
@@ -27,15 +40,16 @@ body{
 	margin-right: 10px;
 }
 
+/*
 #form-container{
-    margin: 100px auto;
+    margin: 150px auto;
     padding: 25px;
     background-color: whitesmoke;
     border-radius: 35px;
     border: 10px solid #cccc;
     width: 500px;
 }
-
+*/
 h2{
     text-align: center;
     margin-bottom: 25px;
@@ -57,97 +71,27 @@ form input, form select{
     text-align: center;
 }
 
-
-
-#info-icon-container {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    cursor: pointer;
-}
-
-#info-icon-container i {
-    font-size: 24px;
-}
-
-#info-container {
-	font-family: 'Dongle', sans-serif;
-    position: absolute;
-    top: 60px;
-	right: 8px;
-	left: -300px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    display: none;
-
-}
-
-#info-container h2 {
-    margin-top: 0;
-    font-size: 18px;
-}
-
-#info-container p {
-    margin-bottom: 0;
-}
-
-
-/*#home{
-	padding: 10px 20px;
-	background-color: whitesmoke;
-	color: none;
-	border: none;
-	cursor: pointer;
-	margin-right: 10px;
-}
-*/
-
-.home{
-    top: 25px;
-	left: 25px;
-	padding: 10px 40px;
-	background-color: whitesmoke;
-	color: none;
-	border: none;
-	cursor: pointer;
-	margin-right: 10px;
-}
-
 #home{
-    position: relative;
+    position: absolute;
     border-radius: none;
-    top: 3px;
-    left: -15px;
+    top: 9px;
+    left: 15px;
+	right: 15px;
     width: 35px;
 }
-#dark{
-	width: 35px;
-	height: 35px;
-	border-radius: none;
+
+#home i {
+    font-size: 30px;
 }
 
-.dark-mode-button{
-    top: 25px;
-	left: 25px;
-	padding: 10px 20px;
-	background-color: whitesmoke;
-	color: none;
-	border: none;
-	cursor: pointer;
-	margin-right: 10px;
-}
-html.dark-mode{
-	filter: invert(100%);
-}
+
 
 /*responsivo */
 @media (max-width:1200px){
 	#form-container {
-		margin: 50px auto; /* ajustar el margen superior */
+		margin: 125px auto; /* ajustar el margen superior */
 		width: 65%; /* ajustar el ancho del contenedor */
+	
 	  }
 	  
 	  form input, form select {
@@ -159,8 +103,9 @@ html.dark-mode{
 
 @media (max-width:850px){
 	#form-container {
-		margin: 50px auto; /* ajustar el margen superior */
+		margin: 125px auto; /* ajustar el margen superior */
 		width: 60%; /* ajustar el ancho del contenedor */
+		
 	  }
 	  
 	  form input, form select {
@@ -172,8 +117,9 @@ html.dark-mode{
 
 @media (max-width: 640px) {
 	#form-container {
-	  margin: 50px auto; /* ajustar el margen superior */
+	  margin: 125px auto; /* ajustar el margen superior */
 	  width: 80%; /* ajustar el ancho del contenedor */
+
 	}
 	
 	form input, form select {
@@ -184,8 +130,9 @@ html.dark-mode{
 
   @media (max-width: 480px) {
 	#form-container {
-	  margin: 50px auto; /* ajustar el margen superior */
+	  margin: 125px auto; /* ajustar el margen superior */
 	  width: 75%; /* ajustar el ancho del contenedor */
+	
 	}
 	
 	form input, form select {
@@ -196,8 +143,9 @@ html.dark-mode{
 
   @media (max-width: 320px) {
 	#form-container {
-	  margin: 50px auto; /* ajustar el margen superior */
+	  margin: 125px auto; /* ajustar el margen superior */
 	  width: 65%; /* ajustar el ancho del contenedor */
+
 	}
 	
 	form input, form select {
