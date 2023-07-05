@@ -16,54 +16,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
     <script src="JS/bloqueo.js"></script>
-
-    <!--Firebase-->
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
-   <!--Configuracion de Script de logueo-->
-   <script src="firebase-config.js"></script>
-  
-    <!--script de verificacion de logueo-->
-    <script>
-     firebase.auth().onAuthStateChanged(function(user) {
-      if (!user) {
-        // Usuario no autenticado, redirigir a la página de inicio de sesión
-        window.location.href = '/login.html';
-      }
-    });
-
-    function logout() {
-      firebase.auth().signOut()
-      .then(() => {
-        // Cierre de sesión exitoso
-        console.log('Cierre de sesión exitoso');
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Sesión cerrada con éxito',
-          showConfirmButton: false,
-          timer: 1500
-        }).then(() => {
-          setTimeout(function() {
-            window.location.href = '/login.html';
-          }, 2000); // Esperar 2 segundos antes de redirigir
-        });
-      })
-      .catch((error) => {
-        // Ocurrió un error durante el cierre de sesión
-        console.log('Error en el cierre de sesión:', error.message);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error en el cierre de sesión',
-          text: error.message
-        });
-      });
-    }
-
-    </script>
-    
 </head>
 <body>
   <div class="container-fluid">
@@ -106,12 +58,12 @@
                    Estadisticas
                 </a>
                 </li>
-               <!-- botón de cerrar sesión actualizado-->
-               <li class="nav-item">
-                <button id="cerrar-sesion" class="nav-link btn btn-link" onclick="logout()">
+               <!-- Agrega el botón de cerrar sesión -->
+              <li class="nav-item">
+                <a class="nav-link" href="/login.html" id="cerrar-sesion">
                   <i class="fas fa-sign-out-alt mr-2"></i>
                   Cerrar sesión
-                </button>                  
+                </a>
               </li>
              
           </ul>
@@ -193,6 +145,5 @@
       });
     });
   </script>
-<script src="/JS/chatbot.js"></script>
 </body>
 </html>

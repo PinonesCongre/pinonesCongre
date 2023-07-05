@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administracion Piñones</title>
+  <link rel="icon" href="img/favicon.ico">
+  <script src="https://kit.fontawesome.com/8dca05f736.js"></script>
+  <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Agrega la biblioteca DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+  <!-- CSS de DataTables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css">
+
+<!-- JS de DataTables -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.js"></script>
+
+<!-- JS de DataTables Editor -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.editor.min.js"></script>
+
+  <script src="JS/bloqueo.js"></script>
+  <!-- Agrega la biblioteca de Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+
+<!-- Configuración de Firebase -->
+<script>
+  // Configura la información de tu proyecto de Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyANSEcsrnbzVJ8i6-eOqv-pewPaeImdORg",
+    authDomain: "pinones-congre.firebaseapp.com",
+    projectId: "pinones-congre",
+    storageBucket: "pinones-congre.appspot.com",
+    messagingSenderId: "1031984043314",
+    appId: "1:1031984043314:web:49b38b2c60d69601d3732b",
+    measurementId: "G-SR373KE6RX"
+  };
+
+  // Inicializa Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Obtiene una referencia a la colección "informes" en Firestore
+  var informesCollection = firebase.firestore().collection("informes");
+</script>
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Menú lateral -->
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/cards.html"><img src="ADMI/favicon.ico" height="35px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/cards.html">
+                <i class="fas fa-home mr-2"></i>
+                Inicio
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/informes.html">
+                <i class="fas fa-book mr-2"></i>
+                Informes
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/historial.html">
+                <i class="fas fa-history mr-2"></i>
+                Historial
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cuenta.html">
+                <i class="fas fa-question mr-2"></i>
+                Ayuda
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/estadisticas.html">
+                <i class="fas fa-project-diagram mr-2"></i>
+                Estadisticas
+              </a>
+            </li>
+            <!-- Agrega el botón de cerrar sesión -->
+            <li class="nav-item">
+              <a class="nav-link" href="/login.html" id="cerrar-sesion">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Cerrar sesión
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <script>
+        // Agregar la clase "show" al menú al hacer clic en el botón de hamburguesa
+        document.querySelector(".navbar-toggler").addEventListener("click", function() {
+          document.querySelector("#navbarCollapse").classList.toggle("show");
+        });
+      </script>
+      
+      <!-- Contenido principal -->
+      <div class="container mt-5" style="padding-top: 20px;">
+        <div class="row">
+          <div class="col-12">
+            <table id="informes-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nombre Completo</th>
+                  <th>Publicaciones</th>
+                  <th>Horas</th>
+                  <th>Revisitas</th>
+                  <th>Cursos</th>
+                  <th>Videos</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td class="nombre-completo">Abrahan Alvarez</td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Alberto Gonzalez Pacheco Prado</td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Alfonso Piña</td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Ana Dinorah Cornejo Guardado
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Azarel Roa Matamoros 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Beatriz Adriana Álvarez Cortés 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Bertha Guadalupe Cruz Rodríguez (de Rivera)
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Betsayin Calderón Cedillo
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Blanca Aguilera
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Blanca Nefertiti Barrera De Coss
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Bryan Gomez Morales 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Claudia Paola Cornejo Muñoz
+ 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Claudia Isela Muñoz Moguel 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Claudia marcela gomez castañeda
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Daniela De Gomez
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Dominga Ventura Ventura
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Edna Angélica López López 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Edson Emmanuel López López 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Eduardo López Hernandez 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Elisabet Piña Norgaard 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Elvira Rosales Sánchez 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Emanuel Alexandro Cruz Díaz 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Gabriel Díaz Tena 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Irma Cruz
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Jose Israel Nevarez Hernandez
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Josué Daniel Téllez Soto
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Karina Alfaro Rosales 
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Karla Navarro Godinez 
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Leonardo Alberto González Pacheco González
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Liliana Jimenez Najera
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Manuel Salvador Montoya
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Marco Antonio Hernandez
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">María de Lourdes Jimenéz Cortés 
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">María del Socorro Torres Cedillo
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">María Estela Ortega Rodríguez
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">María Estela Ramirez Licona 
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">María Eugenia García Rosete 
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Maria Guadalupe Bernal Ramirez
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Maria Q. Moralez Hortega
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Mariela Morales castro
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Mariela Rubio
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Mario Alberto Barrios Silva
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Marisol Cortez 
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Marisol Morato Lopez
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Martha Patricia Matamoros ventura 
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Mercedes Morales Paredes 
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Mireya García de Diaz
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Nicolás Edgar Herrera Bengoa 
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class="nombre-completo">Nicole Margarita Herrera Jiménez 
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+                 
+                  
+                  <tr>
+                    <td class="nombre-completo"> Nieves Norgaard
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Norma Angélica López dé López 
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Óscar Gibrán Ábrego Álvarez
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="nombre-completo">Pilar chabolla perez 
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Rafael Gomez
+
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Roció González García 
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Rosalinda Cruz Sosa
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Rosario Ovalle dé Medina 
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Rubén Escalante
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Santiago Alvarez
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Sara Palacios de Hernandez
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Scarlet Aline Herrera Jiménez
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="nombre-completo">Sebastián Samuel Cruz Díaz 
+
+
+                    </td>
+                    <td class="publicaciones">0</td>
+                    <td class="horas">0</td>
+                    <td class="revisitas">0</td>
+                    <td class="cursos">0</td>
+                    <td class="videos">0</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm btn-add" data-toggle="modal" data-target="#myModal">Añadir</button>
+                      <button class="btn btn-success btn-sm btn-sumar" data-toggle="modal" data-target="#myModal">Sumar</button>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Librería de iconos -->
+  <script src="https://kit.fontawesome.com/your_kit_id.js"></script>
+
+  <script>
+    document.getElementById('cerrar-sesion').addEventListener('click', function(event) {
+      event.preventDefault();
+      Swal.fire({
+        icon: 'success',
+        title: 'Sesión cerrada con éxito',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        window.location.href = '/login.html';
+      });
+    });
+  </script>
+<script>
+    // Obtener referencia a la tabla
+var table = document.getElementById('informes-table');
+
+// Obtener todos los botones "Añadir"
+var addButtons = table.getElementsByClassName('btn-add');
+
+// Recorrer los botones y agregar evento de clic
+for (var i = 0; i < addButtons.length; i++) {
+  addButtons[i].addEventListener('click', function(e) {
+    e.preventDefault();
+    var row = this.parentNode.parentNode; // Obtener la fila actual
+
+    // Mostrar el modal utilizando SweetAlert
+    Swal.fire({
+      title: 'Añadir Datos',
+      html:
+        '<form id="addForm">' +
+        '<div class="form-group">' +
+        '<label for="publicaciones">Número de Publicaciones</label>' +
+        '<input type="number" class="form-control" id="publicaciones" required>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="horas">Horas</label>' +
+        '<input type="number" class="form-control" id="horas" required>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="revisitas">Revisitas</label>' +
+        '<input type="number" class="form-control" id="revisitas" required>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="cursos">Cursos</label>' +
+        '<input type="number" class="form-control" id="cursos" required>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="videos">Videos</label>' +
+        '<input type="number" class="form-control" id="videos" required>' +
+        '</div>' +
+        '</form>',
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      cancelButtonText: 'Cancelar',
+      focusConfirm: false,
+      preConfirm: () => {
+  // Obtener los nuevos valores del formulario
+  var newPublicaciones = document.getElementById('publicaciones').value;
+  var newHoras = document.getElementById('horas').value;
+  var newRevisitas = document.getElementById('revisitas').value;
+  var newCursos = document.getElementById('cursos').value;
+  var newVideos = document.getElementById('videos').value;
+
+  // Actualizar los valores en la fila correspondiente
+  row.querySelector('.publicaciones').textContent = newPublicaciones;
+  row.querySelector('.horas').textContent = newHoras;
+  row.querySelector('.revisitas').textContent = newRevisitas;
+  row.querySelector('.cursos').textContent = newCursos;
+  row.querySelector('.videos').textContent = newVideos;
+
+  // Guardar los datos en Firebase Firestore
+  informesCollection.doc("Abrahan_Alvarez").set({
+    nombreCompleto: "Abrahan Alvarez",
+    publicaciones: newPublicaciones,
+    horas: newHoras,
+    revisitas: newRevisitas,
+    cursos: newCursos,
+    videos: newVideos
+  }),
+  informesCollection.doc("Alberto_Gonzalez_Pacheco_Prado").set({
+  nombreCompleto: "Alberto Gonzalez Pacheco Prado",
+  publicaciones: newPublicaciones,
+  horas: newHoras,
+  revisitas: newRevisitas,
+  cursos: newCursos,
+  videos: newVideos
+})
+  .then(function() {
+    Swal.fire('¡Guardado!', 'Los datos se han guardado correctamente en Firebase.', 'success');
+  })
+  .catch(function(error) {
+    Swal.fire('¡Error!', 'No se pudieron guardar los datos en Firebase.', 'error');
+    console.error("Error al guardar los datos en Firebase:", error);
+  });
+}
+
+    });
+
+  });
+}
+
+</script>
+
+<script>
+    // Obtener referencia a la tabla
+var table = document.getElementById('informes-table');
+
+// Obtener referencia a la fila de datos
+var dataRow = table.querySelector('tbody tr');
+
+// Obtener referencia a las celdas de datos
+var nombreCompletoCell = dataRow.querySelector('.nombre-completo');
+var publicacionesCell = dataRow.querySelector('.publicaciones');
+var horasCell = dataRow.querySelector('.horas');
+var revisitasCell = dataRow.querySelector('.revisitas');
+var cursosCell = dataRow.querySelector('.cursos');
+var videosCell = dataRow.querySelector('.videos');
+
+// Obtener el documento correspondiente desde Firebase Firestore
+informesCollection.doc("Abrahan_Alvarez").get(),
+informesCollection.doc("Alberto_Gonzalez_Pacheco_Prado").get()
+  .then(function(doc) {
+    if (doc.exists) {
+      // Obtener los datos del documento
+      var data = doc.data();
+
+      // Actualizar las celdas de datos en la tabla con los valores obtenidos
+      nombreCompletoCell.textContent = data.nombreCompleto;
+      publicacionesCell.textContent = data.publicaciones;
+      horasCell.textContent = data.horas;
+      revisitasCell.textContent = data.revisitas;
+      cursosCell.textContent = data.cursos;
+      videosCell.textContent = data.videos;
+    }
+  })
+  .catch(function(error) {
+    console.error("Error al obtener los datos de Firebase:", error);
+  });
+
+</script>
+
+
+</body>
+</html>

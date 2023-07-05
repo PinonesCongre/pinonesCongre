@@ -5,81 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administracion Piñones</title>
   <link rel="icon" href="img/favicon.ico">
-    <!--Fuente de la Pagina-->
-    <script src="https://kit.fontawesome.com/8dca05f736.js"></script>
-    <!-- CSS de Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-      <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- JavaScript de Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/8dca05f736.js"></script>
+  <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+  <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- JavaScript de Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+  <!-- Agrega la biblioteca DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css"/>
+  
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
-    <!--Bloqueo de Comandos-->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="JS/bloqueo.js"></script>
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-qxqZvaVY5+5zHSyP0c9XPDuvhjybBTR/Y6F3wHBOVY8yTKBAyPfU/0XjRJuTy0zy8FF6A8hxzS1Z57QR5BNr4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
       .card{
         margin-top:15px;
       }
     </style>
-    <!--Firebase-->
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
-   <!--Configuracion de Script de logueo-->
-   <script src="firebase-config.js"></script>
-  
-    <!--script de verificacion de logueo-->
-    <script>
-     firebase.auth().onAuthStateChanged(function(user) {
-      if (!user) {
-        // Usuario no autenticado, redirigir a la página de inicio de sesión
-        window.location.href = '/login.html';
-      }
-    });
-
-    function logout() {
-      firebase.auth().signOut()
-      .then(() => {
-        // Cierre de sesión exitoso
-        console.log('Cierre de sesión exitoso');
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Sesión cerrada con éxito',
-          showConfirmButton: false,
-          timer: 1500
-        }).then(() => {
-          setTimeout(function() {
-            window.location.href = '/login.html';
-          }, 2000); // Esperar 2 segundos antes de redirigir
-        });
-      })
-      .catch((error) => {
-        // Ocurrió un error durante el cierre de sesión
-        console.log('Error en el cierre de sesión:', error.message);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error en el cierre de sesión',
-          text: error.message
-        });
-      });
-    }
-
-    </script>
-    
-    
-    
  <!--SCRIPT DE BIENVENIDA-->
- 
-  <!-- <script src="ADMI/bienvenida.js"></script> -->
+  <script src="ADMI/bienvenida.js"></script>
 </head>
 <body>
+  <script>
+    // Inicializa Firebase
+    eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('r 7={8:"9-a-b",c:"0-2.d.3",e:"f://0-2-6-h.i.3",g:"0-2",k:"0-2.l.3",m:"4",n:"1:4:o:p",q:"j-5"};',28,28,'pinones||congre|com|1031984043314|SR373KE6RX|default|firebaseConfig|apiKey|AIzaSyANSEcsrnbzVJ8i6|eOqv|pewPaeImdORg|authDomain|firebaseapp|databaseURL|https|projectId|rtdb|firebaseio|G|storageBucket|appspot|messagingSenderId|appId|web|49b38b2c60d69601d3732b|measurementId|const'.split('|'),0,{}))
 
+    firebase.initializeApp(firebaseConfig);
+  
+    // Observa cambios en el estado de autenticación del usuario
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // El usuario ha iniciado sesión
+        console.log("Usuario logeado:", user.email);
+      } else {
+        // El usuario no ha iniciado sesión
+        console.log("Usuario no logeado");
+      }
+    });
+  </script>
 
   <div class="container-fluid">
     <div class="row">
@@ -121,12 +96,12 @@
                      Estadisticas
                   </a>
                   </li>
-                 <!-- botón de cerrar sesión actualizado-->
-                 <li class="nav-item">
-                  <button id="cerrar-sesion" class="nav-link btn btn-link" onclick="logout()">
+                 <!-- Agrega el botón de cerrar sesión -->
+                <li class="nav-item">
+                  <a class="nav-link" href="/login.html" id="cerrar-sesion">
                     <i class="fas fa-sign-out-alt mr-2"></i>
                     Cerrar sesión
-                  </button>                  
+                  </a>
                 </li>
                
             </ul>
@@ -152,7 +127,7 @@
         
 
 
-      <!--BOTON DE SOPORTE-->
+      <!--AQUI VA EL CODIDO PARA EL BOTON DE SOPORTE-->
 
       <script>
         var containerDiv = document.createElement("div");
@@ -219,6 +194,12 @@
                     <h5 class="card-title">Descargar Informes del Mes</h5>
                     <p class="card-text">Permite descargar los informes que se encuentran enviados hasta el momento, se actualiza cada minuto. </p>
                     <a class="btn btn-outline-primary" href="https://docs.google.com/spreadsheets/d/1zBcwXfb3duvisBGxfyeqOQTulN75C_0LRTgytH2DvjM/export?format=xlsx" download>Descargar Informe Completo</a>
+                    <!--Nuevo boton para temporalidad-->
+                    <!--    <a href="#" class="btn btn-primary" onclick="mostrarAlerta()">Descargar Informe</a> -->
+                 
+                    <!--Script momentantaneo para mandar la alerta-->
+                    <!--  <script src="ADMI/alertatemporal.js"></script> -->
+              
                 </div>
             </div>
           </div>
@@ -238,7 +219,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Resumen Anual</h5>
                     <p class="card-text">Contiene los totales por publicador durante el año de servicio.</p>
-                    <a href="#" class="btn btn-secondary disabled">Ir a Resumen Anual</a>
+                    <a href="/ResumenAnual.html" class="btn btn-secondary">Ir a Resumen Anual</a>
                 </div>
             </div>
           </div>
@@ -248,16 +229,16 @@
               <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">Administrador</h5>
-                    <p class="card-text">Acesso Restringido</p>
-                    <a href="#" class="btn btn-outline-primary" id="btn-subir-archivos">Entrar</a>
+                    <h5 class="card-title">Subir Archivos</h5>
+                    <p class="card-text">Trabajando</p>
+                    <a href="#" class="btn btn-outline-primary" id="btn-subir-archivos">Subir Archivos</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!--Script de subir archivos a drive-->
+          
   <script>
     document.getElementById('btn-subir-archivos').addEventListener('click', function(event) {
       event.preventDefault();
@@ -274,7 +255,7 @@
         showLoaderOnConfirm: true,
         preConfirm: (password) => {
           if (password === 'tu-contraseña') {
-            window.location.href = '#';
+            window.location.href = '/comparativo.html';
           } else {
             Swal.fire({
               icon: 'error',
@@ -295,6 +276,25 @@
     </div>
   </div>
 
-  <script src="/JS/chatbot.js"></script>
+  <!-- Librería de iconos -->
+  <script src="https://kit.fontawesome.com/your_kit_id.js"></script>
+
+    <!-- Agregar el siguiente código al final del archivo HTML -->
+  <script>
+    document.getElementById('cerrar-sesion').addEventListener('click', function(event) {
+      event.preventDefault();
+      Swal.fire({
+        icon: 'success',
+        title: 'Sesión cerrada con éxito',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        window.location.href = '/login.html';
+      });
+    });
+  </script>
+
+
+
 </body>
 </html>

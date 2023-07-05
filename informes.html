@@ -17,60 +17,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
-    <script src="JS/bloqueo.js"></script>
     <style>
       .table-responsive{
         margin-top:30px;
       } 
     </style>
-    <!--Firebase-->
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
-   <!--Configuracion de Script de logueo-->
-   <script src="firebase-config.js"></script>
-  
-    <!--script de verificacion de logueo-->
-    <script>
-     firebase.auth().onAuthStateChanged(function(user) {
-      if (!user) {
-        // Usuario no autenticado, redirigir a la página de inicio de sesión
-        window.location.href = '/login.html';
-      }
-    });
 
-    function logout() {
-      firebase.auth().signOut()
-      .then(() => {
-        // Cierre de sesión exitoso
-        console.log('Cierre de sesión exitoso');
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Sesión cerrada con éxito',
-          showConfirmButton: false,
-          timer: 1500
-        }).then(() => {
-          setTimeout(function() {
-            window.location.href = '/login.html';
-          }, 2000); // Esperar 2 segundos antes de redirigir
-        });
-      })
-      .catch((error) => {
-        // Ocurrió un error durante el cierre de sesión
-        console.log('Error en el cierre de sesión:', error.message);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error en el cierre de sesión',
-          text: error.message
-        });
-      });
-    }
-
-    </script>
-    
-   
+    <script src="JS/bloqueo.js"></script>
 </head>
 <body>
 
@@ -114,13 +67,13 @@
                    Estadisticas
                 </a>
                 </li>
-                <!-- botón de cerrar sesión actualizado-->
-                <li class="nav-item">
-                  <button id="cerrar-sesion" class="nav-link btn btn-link" onclick="logout()">
-                    <i class="fas fa-sign-out-alt mr-2"></i>
-                    Cerrar sesión
-                  </button>                  
-                </li>
+               <!-- Agrega el botón de cerrar sesión -->
+              <li class="nav-item">
+                <a class="nav-link" href="/login.html" id="cerrar-sesion">
+                  <i class="fas fa-sign-out-alt mr-2"></i>
+                  Cerrar sesión
+                </a>
+              </li>
              
           </ul>
           </div>
@@ -264,6 +217,8 @@
   
    <script type="text/javascript" src="ADMI/app.js"></script>
    <!--Fin del contenido de funcionalidad de la tabla-->
+  <!-- Librería de iconos -->
+  <script src="https://kit.fontawesome.com/your_kit_id.js"></script>
 
   <script>
     document.getElementById('cerrar-sesion').addEventListener('click', function(event) {

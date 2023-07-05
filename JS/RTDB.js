@@ -1,3 +1,16 @@
+// Obtener el icono de información y el contenedor de información
+var infoIcon = document.querySelector('#info-icon-container i');
+var infoContainer = document.querySelector('#info-container');
+
+// Mostrar u ocultar el contenedor de información al hacer clic en el icono de información
+infoIcon.addEventListener('click', function() {
+    if (infoContainer.style.display === 'none') {
+        infoContainer.style.display = 'block';
+    } else {
+        infoContainer.style.display = 'none';
+    }
+});
+
 //Inicio de Configuracion
 const firebaseConfig = {
   apiKey: "AIzaSyD9HTmOwCx8y-oJ0VV-zaoYBgQYLAfkmWU",
@@ -70,12 +83,6 @@ $("#report-form").validate({
       digits: "Por favor, ingrese solo números enteros"
     },
     superintendente: "Por favor, ingrese el nombre de su superintendente"
-  },
-  highlight: function(element) {
-    $(element).addClass("input-error");
-  },
-  unhighlight: function(element) {
-    $(element).removeClass("input-error");
   },
   submitHandler: function(form) {
     // Captura los valores de cada campo del formulario y los almacena en un objeto JavaScript

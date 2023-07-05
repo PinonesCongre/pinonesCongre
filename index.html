@@ -4,95 +4,48 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congregacion Pinones</title>
-    <!--FAVICON-->
+    <!--FAVICON DE LA PAGINA-->
     <link rel="icon" href="img/favicon.ico">
-    <!--ESTILO-->
+    <!--ESTILO BASICO DE LA PAGINA-->
     <link id="theme-link" rel="stylesheet" href="CSS/ligth.css">
-    <!--FUENTE DE LA PAGINA-->
     <link rel= "stylesheet" type= "text/css" herf= "http.//fonts.googleapis.com/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-lr5z5Z5i5wtYltPp17LKtEMxeMYiZXyfzK25I1F8WltiNQ9mZnp1DMH3q8oWrx6gFQD7y1HX52ovGM90TNUhOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--VALIDACION-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-    <!--ICONOS DE LA PAGINA-->
     <script src="https://kit.fontawesome.com/8dca05f736.js" crossorigin="anonymous"></script>
-    <!--FIREBASE-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-lr5z5Z5i5wtYltPp17LKtEMxeMYiZXyfzK25I1F8WltiNQ9mZnp1DMH3q8oWrx6gFQD7y1HX52ovGM90TNUhOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-	<!--ALERTAS POP-UP-->
+	
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
-
-
-    <!--BLOQUEOS-->
     <script src="JS/bloqueo.js"></script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Work+Sans&display=swap');
-        /* Estilos personalizados para el botón de cerrar */
-        #close-button {
-            background-color: #a2cdff;
-            color: #000000;
-            border: none;
-            padding: 8px 12px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #close-button:hover {
-            background-color: rgb(250, 164, 164);
-        }
-
-        /* Otros estilos necesarios para la visualización */
-        #info-icon-container {
-            font-family: 'Work Sans', sans-serif;
-            text-align: center;
-        }
-
-        #info-container {
-            background-color: #f9f9f9;
-            padding: 20px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-    </style>
 </head>
 </head>
 <body>    
+<!-- Informacion sobre la pagina-->
+    <div id="info-icon-container">
+		<i class="fas fa-info-circle"></i>
+		<div id="info-container">
+			<h2>Información sobre la página</h2>
+			<p>Este sitio web ha sido desarrollado con la intención de servir a la comunidad de manera gratuita y sin fines de lucro. Fue creado como respuesta a una necesidad en la congregación, con el objetivo de facilitar la comunicación y la difusión de información relevante.</p>
+			<p>Además, se ha trabajado para garantizar la seguridad de la información y la privacidad de los usuarios.
+				Este sitio web es un ejemplo del poder que tiene la tecnología para facilitar la colaboración y la comunicación.</p>
+				<h3>Creado y diseñado por: Leonardo Gonzalez</h3>
+		</div>
+	</div>
+	
 
-<!-- Informacion sobre la pagina -->
-<div id="info-icon-container">
-    <i id="info-icon" class="fas fa-info-circle"></i>
-    <div id="info-container">
-      <h2>Información sobre la página</h2>
-      <p>Este sitio web ha sido desarrollado con la intención de servir a la comunidad de manera gratuita y sin fines de lucro. Fue creado como respuesta a una necesidad en la congregación, con el objetivo de facilitar la comunicación y la difusión de información relevante.</p>
-      <p>Además, se ha trabajado para garantizar la seguridad de la información y la privacidad de los usuarios. Este sitio web es un ejemplo del poder que tiene la tecnología para facilitar la colaboración y la comunicación.</p>
-      <h3>Creado y diseñado por: Leonardo Gonzalez</h3>
-	<h3>Congregacion Piñones</h3>
-      <button id="close-button">Cerrar</button>
-    </div>
-  </div>
-  
-  <div id="login-icon-container">
-    <a href="/login.html">
-      <i class="fas fa-user-alt"></i>
-    </a>
-  </div>
-  
-  <!-- Icono para la información de la página -->
-  <i class="fa-sharp fa-solid fa-circle-info"></i>
-  
-  <!-- Botón para cambiar el tema a oscuro -->
-  
-
+	
+    <!--icono para la informacion de la pagina-->
+	<i class="fa-sharp fa-solid fa-circle-info"></i>
+    <!--Boton para cambiar el tema a oscuro-->
     <button type="button" class="dark-mode-button" id="dark-mode" onclick="document.documentElement.classList.toggle('dark-mode')">
         <img id="dark"src="/img/day.png"  alt="">
     </button>
-
+    
     <!--Inicio de Formulario-->
     <div id="form-container">
-        <h2 id="form-title">Informes mes de <span id="current-month"></span> 2023</h2>
+        <h2>Informes mes de Junio 2023</h2>
         <form id="report-form">
             <!--Nombre-->
             <label for="name">Nombre Completo: </label>
@@ -139,58 +92,12 @@
 
             <button type="reset" id="clear-btn">Limpiar</button>
 			<button type="submit" id="submit-btn">Enviar</button>
-            
+            <!--Login -->
+	        <a href="/login.html"><button  type="button" id="login-btn">¿Ya tiene cuenta registrada?</button></a>
 
         </form>
     </div>
-
-
-    <!--Actualizacion del mes automatizada-->
-    
-<script>
-    // Función para actualizar el mes
-    function actualizarMes() {
-      // Obtiene la fecha actual
-      var currentDate = new Date();
-    
-      // Obtiene el elemento del mes
-      var monthElement = document.getElementById('current-month');
-    
-      // Obtiene el mes anterior (teniendo en cuenta que los meses comienzan desde 0)
-      var previousMonth = currentDate.getMonth() - 1;
-    
-      // Si el mes actual es enero, ajusta el mes anterior a diciembre del año anterior
-      if (previousMonth < 0) {
-        previousMonth = 11; // diciembre es el mes 11
-      }
-    
-      // Actualiza el contenido del elemento del mes
-      monthElement.textContent = obtenerNombreDelMes(previousMonth + 1);
-    }
-  
-    // Función para obtener el nombre del mes según su número
-    function obtenerNombreDelMes(month) {
-      var meses = [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-      ];
-      return meses[month - 1];
-    }
-  
-    // Actualiza el mes inicialmente
-    actualizarMes();
-  
-    // Programa la actualización del mes cada 20 días (en milisegundos)
-    setInterval(actualizarMes, 20 * 24 * 60 * 60 * 1000);
-  </script>
-  
-  
-<script src="JS/RTDB.js"></script>
-
-<script src="/JS/info.js"></script>
-
-<footer>
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.
-</footer>
 </body>
+<!--CONFIGURACION DE LA BASE DE DATOS-->
+<script src="JS/RTDB.js"></script>
 </html>

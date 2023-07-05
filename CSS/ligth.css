@@ -14,25 +14,6 @@ body{
 	margin-left:23em;
 }
 
-
-
-.input-error {
-	border: 5px solid red;
-  }
-  
-
-  input:focus {
-	outline: 5px solid lightblue;
-}
-
-select:focus {
-	outline: 5px solid lightblue;
-}
-
-textarea:focus {
-	outline: 5px solid lightblue;
-}
-
 /*
 #login-btn {
 	position: absolute;
@@ -153,18 +134,6 @@ form input, form select, form textarea{
 
 #info-container p {
     margin-bottom: 0;
-}
-
-#login-icon-container{
-	position: absolute;
-    top: 25px;
-    right: 95px;
-    cursor: pointer;
-}
-
-#login-icon-container i{
-	font-size: 24px;
-	color: #000000;
 }
 
 
