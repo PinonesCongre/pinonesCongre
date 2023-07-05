@@ -4,115 +4,125 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congregacion Piñones</title>
+    <!--FAVICON-->
     <link rel="icon" href="img/favicon.ico">
+    <!--ESTILOS-->
     <link rel="stylesheet" href="CSS/login.css">
+    <!--FUENTE DE LA PAGINA-->
     <link rel= "stylesheet" type= "text/css" herf= "http.//fonts.googleapis.com/css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/8dca05f736.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-lr5z5Z5i5wtYltPp17LKtEMxeMYiZXyfzK25I1F8WltiNQ9mZnp1DMH3q8oWrx6gFQD7y1HX52ovGM90TNUhOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--ICONOS DE LA PAGINA-->
+    <script src="https://kit.fontawesome.com/8dca05f736.js" crossorigin="anonymous"></script>
+    
+    <!--VALIDACION-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <!--FIREBASE-->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <!--POP-UP-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+    <!--BLOQUEO DE COMANDOS-->
     <script src="JS/bloqueo.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-lr5z5Z5i5wtYltPp17LKtEMxeMYiZXyfzK25I1F8WltiNQ9mZnp1DMH3q8oWrx6gFQD7y1HX52ovGM90TNUhOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 </head>
 <body>
-    <!-- Informacion sobre la pagina-->
-    <div id="info-icon-container">
-		<i class="fas fa-info-circle"></i>
-		<div id="info-container">
-			<h2>Información sobre la página</h2>
-			<p>Este sitio web ha sido desarrollado con la intención de servir a la comunidad de manera gratuita y sin fines de lucro. Fue creado como respuesta a una necesidad en la congregación, con el objetivo de facilitar la comunicación y la difusión de información relevante.</p>
-			<p>Además, se ha trabajado para garantizar la seguridad de la información y la privacidad de los usuarios.
-				Este sitio web es un ejemplo del poder que tiene la tecnología para facilitar la colaboración y la comunicación.</p>
-				<h3>Creado y diseñado por: Leonardo Gonzalez</h3>
-		</div>
-	</div>
-	
-    <!--Login -->
-	
-    <!--icono para la informacion de la pagina-->
-	<i class="fa-sharp fa-solid fa-circle-info"></i>
+ 
     <!--Boton para cambiar el tema a oscuro-->
     <a href="/index.html"><button type="button" class="home" id="home">
-        <img id="home" src="/img/house-solid.svg" alt="">
+        <i class="fas fa-home"></i>
     </button></a>
-    <button  type="button" class="dark-mode-button" id="dark-mode" onclick="document.documentElement.classList.toggle('dark-mode')">
+
+    <!--    <button  type="button" class="dark-mode-button" id="dark-mode" onclick="document.documentElement.classList.toggle('dark-mode')">
         <img id="dark"src="/img/day.png"  alt="">
-    </button>
+    </button> -->
+   
     
+     <!--Login -->
+
     <div id="form-container">
         <h2>Iniciar Sesión</h2>
-        <form id="login-form">
-            <label for="email">Correo electrónico: </label>
-            <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico" required>
-
-       
-            <label for="password">Contraseña:</label>
-            <div class="password-container">
-            <input type="password" minlength="6" id="password" name="password" placeholder="Ingrese su contraseña" required>
-            <span class="password-toggle"><i class="fas fa-eye"></i></span>
-            </div>
-
-
-            <style>
-                .password-container {
-                position: relative;
-                }
-
-                .password-toggle {
-                position: absolute;
-                top: 50%;
-                right: 10px;
-                transform: translateY(-50%);
-                cursor: pointer;
-                }
-
-                .password-toggle i {
-                color: #000000;
-                }
-
-                .password-toggle i:hover {
-                color: #000000;
-                }
-
-                .password-toggle.active i {
-                color: #000000;
-                }
-
-                .password-toggle.active i::before {
-                content: "\f070";
-                }
-
-                .password-toggle i::before {
-                content: "\f06e";
-                font-family: "Font Awesome 5 Free";
-                font-weight: 900;
-                }
-
-
-            </style>
-
-            <script>
-                const passwordToggle = document.querySelector('.password-toggle');
-                const passwordInput = document.getElementById('password');
-
-                passwordToggle.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                this.classList.toggle('active');
-                });
-
-            </script>
-          
-            <button type="submit" id="submit-btn">Ingresar</button>
-            
-        </form>
+     
+            <form id="login-form">
+                <label for="email">correo electrónico: </label>
+                <input type="email" id="email" name="email" placeholder="correo electrónico" required>
+    
+           
+                <label for="password">contraseña:</label>
+                <div class="password-container">
+                <input type="password" minlength="6" id="password" name="password" placeholder="contraseña" required>
+                <span class="password-toggle"><i class="fas fa-eye"></i></span>
+                </div>
+    
+    
+                <style>
+                    .password-container {
+                    position: relative;
+                    }
+    
+                    .password-toggle {
+                    position: absolute;
+                    top: 50%;
+                    right: 10px;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                    }
+    
+                    .password-toggle i {
+                    color: #000000;
+                    }
+    
+                    .password-toggle i:hover {
+                    color: #000000;
+                    }
+    
+                    .password-toggle.active i {
+                    color: #000000;
+                    }
+    
+                    .password-toggle.active i::before {
+                    content: "\f070";
+                    }
+    
+                    .password-toggle i::before {
+                    content: "\f06e";
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    }
+    
+    
+                </style>
+    
+                <script>
+                    const passwordToggle = document.querySelector('.password-toggle');
+                    const passwordInput = document.getElementById('password');
+    
+                    passwordToggle.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    this.classList.toggle('active');
+                    });
+    
+                </script>
+              
+                <button type="submit" id="submit-btn">Ingresar</button>
+                
+            </form>
+      
+      
     </div>
+
+ 
 </body>
+
+<footer>
+    <div class="footer-container">
+      <p>Todos los derechos reservados &copy; 2023 | Leonardo Gonzalez</p>
+      <p>Desarrollado por <a href="#">Leonardo Gonzalez</a></p>
+    </div>
+  </footer>
 <script src="JS/login.js"></script>
+
+
 </html>

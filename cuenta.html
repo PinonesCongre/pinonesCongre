@@ -18,6 +18,16 @@
     <script src="JS/bloqueo.js"></script>
 
     <style>
+      body.dark-mode {
+    background-color: #343a40;
+    color: #fff;
+      }
+
+      body.dark-mode .card {
+        background-color: #212529;
+        color: #fff;
+      }
+
       .card{
         margin-top:25px;
       }
@@ -29,12 +39,90 @@
 
       }
     </style>
+
+    <!--Firebase-->
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+   <!--Configuracion de Script de logueo-->
+   <script src="firebase-config.js"></script>
+  
+    <!--script de verificacion de logueo-->
+    <script>
+     firebase.auth().onAuthStateChanged(function(user) {
+      if (!user) {
+        // Usuario no autenticado, redirigir a la página de inicio de sesión
+        window.location.href = '/login.html';
+      }
+    });
+
+    function logout() {
+      firebase.auth().signOut()
+      .then(() => {
+        // Cierre de sesión exitoso
+        console.log('Cierre de sesión exitoso');
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Sesión cerrada con éxito',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          setTimeout(function() {
+            window.location.href = '/login.html';
+          }, 2000); // Esperar 2 segundos antes de redirigir
+        });
+      })
+      .catch((error) => {
+        // Ocurrió un error durante el cierre de sesión
+        console.log('Error en el cierre de sesión:', error.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error en el cierre de sesión',
+          text: error.message
+        });
+      });
+    }
+
+    </script>
+
+    <!--MODO OSCURO-->
+    <script>
+      // Función para habilitar el modo oscuro
+      function enableDarkMode() {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+      }
+    
+      // Función para deshabilitar el modo oscuro
+      function disableDarkMode() {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    
+      // Verificar el tema almacenado en localStorage
+      var storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark') {
+        enableDarkMode();
+      }
+    
+      // Evento de cambio de tema
+      function toggleDarkMode() {
+        if (document.body.classList.contains('dark-mode')) {
+          disableDarkMode();
+        } else {
+          enableDarkMode();
+        }
+      }
+    </script>
+
 </head>
 <body>
   <div class="container-fluid">
     <div class="row">
         <!-- Menú lateral -->
-        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <a class="navbar-brand" href="/cards.html"><img src="ADMI/favicon.ico" height="35px"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -71,13 +159,22 @@
                    Estadisticas
                 </a>
                 </li>
-               <!-- Agrega el botón de cerrar sesión -->
-              <li class="nav-item">
-                <a class="nav-link" href="/login.html" id="cerrar-sesion">
+               <!-- botón de cerrar sesión actualizado-->
+               <li class="nav-item">
+                <button id="cerrar-sesion" class="nav-link btn btn-link" onclick="logout()">
                   <i class="fas fa-sign-out-alt mr-2"></i>
                   Cerrar sesión
-                </a>
+                </button>                  
               </li>
+
+              <li class="nav-item">
+                <button id="cambiar-tema" class="nav-link btn btn-link" onclick="toggleDarkMode()">
+                  <i class="fas fa-adjust mr-2"></i>
+                  Cambiar tema
+                </button>
+              </li>
+           
+
              
           </ul>
           </div>
@@ -115,8 +212,8 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Reciba ayuda personalizada</h5>
-                <p class="card-text">En contruccion.</p>
-                <a href="#" class="btn btn-primary disabled">Recibir Ayuda</a>
+                <p class="card-text">Es un bot con asistencia basica del funcionamiento de la pagina.</p>
+                <a href="chatbot.html" class="btn btn-primary">Recibir Ayuda</a>
               </div>
             </div>
           </div>
@@ -143,5 +240,21 @@
       });
     });
   </script>
+
+<script src="/JS/chatbot.js"></script>
+
+ <!--almacenar opcion de color-->
+ <script>
+  // Evento de carga de la página
+  document.addEventListener('DOMContentLoaded', function() {
+    // Verificar el tema almacenado
+    var storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  });
+</script>
+
+
 </body>
 </html>

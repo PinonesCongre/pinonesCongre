@@ -1,8 +1,17 @@
-
+// firebase-config.js
+var firebaseConfig = {
+  apiKey: "AIzaSyANSEcsrnbzVJ8i6-eOqv-pewPaeImdORg",
+authDomain: "pinones-congre.firebaseapp.com",
+databaseURL: "https://pinones-congre-default-rtdb.firebaseio.com",
+projectId: "pinones-congre",
+storageBucket: "pinones-congre.appspot.com",
+messagingSenderId: "1031984043314",
+appId: "1:1031984043314:web:49b38b2c60d69601d3732b",
+measurementId: "G-SR373KE6RX"
+};
 // Inicializar Firebase
-eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('r 7={8:"9-a-b",c:"0-2.d.3",e:"f://0-2-6-h.i.3",g:"0-2",k:"0-2.l.3",m:"4",n:"1:4:o:p",q:"j-5"};',28,28,'pinones||congre|com|1031984043314|SR373KE6RX|default|firebaseConfig|apiKey|AIzaSyANSEcsrnbzVJ8i6|eOqv|pewPaeImdORg|authDomain|firebaseapp|databaseURL|https|projectId|rtdb|firebaseio|G|storageBucket|appspot|messagingSenderId|appId|web|49b38b2c60d69601d3732b|measurementId|var'.split('|'),0,{}))
+firebase.initializeApp(firebaseConfig);
 
-  firebase.initializeApp(firebaseConfig);
   
   // Agregar un listener al formulario de reseteo de contraseña
   document.getElementById("reset-form").addEventListener("submit", function(event) {
@@ -30,3 +39,38 @@ eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/
   });
   });
   });
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+      // Usuario no autenticado, redirigir a la página de inicio de sesión
+      window.location.href = '/login.html';
+    }
+  });
+
+  function logout() {
+    firebase.auth().signOut()
+    .then(() => {
+      // Cierre de sesión exitoso
+      console.log('Cierre de sesión exitoso');
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Sesión cerrada con éxito',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        setTimeout(function() {
+          window.location.href = '/login.html';
+        }, 2000); // Esperar 2 segundos antes de redirigir
+      });
+    })
+    .catch((error) => {
+      // Ocurrió un error durante el cierre de sesión
+      console.log('Error en el cierre de sesión:', error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error en el cierre de sesión',
+        text: error.message
+      });
+    });
+  }
