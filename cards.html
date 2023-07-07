@@ -118,11 +118,15 @@
     </script>
     
     
- <!--SCRIPT DE BIENVENIDA-->
+
  
   <!-- <script src="ADMI/bienvenida.js"></script> -->
 </head>
 <body>
+
+
+
+
 
 
   <div class="container-fluid">
@@ -362,5 +366,84 @@
   </script>
   
   
+
+<!--Script de bienvenida-->
+<script>
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    var userEmail = user.email;
+
+    // Objeto que mapea correos electrónicos con nombres
+    var usersData = {
+      "leonidas13456@gmail.com": "Leonardo",
+      "rafita.gomez@hotmail.com": "Rafael",
+      "glgmshskndr@gmail.com": "Josué",
+      "ptalfonso@hotmail.com": "Alfonso",
+      "ogaalvarez@gmail.com": "Óscar",
+      "albertogonzalez29@outlook.com": "Alberto",
+      "pachecoleonardo74@gmail.com": "Betito",
+      "correo1@example.com": "Nombre 1",
+      // Agrega más correos electrónicos y nombres según sea necesario
+    };
+
+    // Obtener el nombre del usuario utilizando el correo electrónico
+    var userName = usersData[userEmail] || "Usuario"; // Si no se encuentra el nombre, se usa "Usuario" como valor predeterminado
+
+    var themeColor = document.body.classList.contains('dark-mode') ? '#000' : '#fff';
+
+    var welcomeMessage = '¡Hola <strong>' + userName + '</strong>! ¡Qué bueno tenerte de nuevo por aquí!';
+
+    // Verificar si la alerta ya se mostró anteriormente en la sesión actual
+    var alertShown = localStorage.getItem('alertShown');
+
+    if (!alertShown) {
+      Swal.fire({
+        title: '¡Bienvenido!',
+        html: welcomeMessage,
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        background: themeColor, // Establece el color de fondo de la alerta según el modo oscuro
+        showCancelButton: true,
+        cancelButtonText: 'No volver a mostrar',
+        didClose: function() {
+          // Guardar en el almacenamiento local la elección del usuario de no volver a mostrar la alerta
+          if (Swal.getPopup().isConfirmed) {
+            localStorage.removeItem('alertShown');
+            console.log('La alerta se mostrará en futuros inicios de sesión');
+          } else {
+            console.log('La alerta no se mostrará en futuros inicios de sesión');
+          }
+        }
+      }).then((result) => {
+        // Comprobar si el usuario seleccionó "No volver a mostrar"
+        if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire({
+            title: 'Confirmación',
+            text: '¿Estás seguro de que no quieres volver a ver este mensaje?',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+          }).then((confirmResult) => {
+            if (confirmResult.isConfirmed) {
+              localStorage.setItem('alertShown', 'true');
+              console.log('La alerta no se mostrará en futuros inicios de sesión');
+            } else {
+              console.log('La alerta se mostrará en futuros inicios de sesión');
+            }
+          });
+        } else {
+          console.log('La alerta se mostrará en futuros inicios de sesión');
+        }
+      });
+    } else {
+      console.log('La alerta se mostrará en futuros inicios de sesión');
+    }
+  }
+});
+
+</script>
+
 </body>
 </html>
+
