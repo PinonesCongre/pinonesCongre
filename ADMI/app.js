@@ -44,7 +44,7 @@ $(document).ready(function() {
 
     // Muestra datos de DataTables
     coleccionInformes.on("child_added", datos => {        
-        dataSet = [datos.key, datos.child("nombre").val(),datos.child("rol").val(), datos.child("publicaciones").val(), datos.child("horas").val(), datos.child("revisitas").val(),datos.child("cursosBiblicos").val(),datos.child("videos").val(),datos.child("superintendente").val(),datos.child("notas").val()];
+        dataSet = [datos.key, datos.child("nombre").val(),datos.child("rol").val(), datos.child("publicaciones").val(), datos.child("horas").val(), datos.child("revisitas").val(),datos.child("cursosBiblicos").val(),datos.child("videos").val(),datos.child("superintendente").val(),datos.child("notas").val(),datos.child("fechaEnvio").val()];
         table.rows.add([dataSet]).draw();
     });
 

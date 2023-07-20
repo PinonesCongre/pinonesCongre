@@ -88,9 +88,24 @@ $("#report-form").validate({
       cursosBiblicos: parseInt($("#bibleCourse").val()),
       videos: parseInt($("#videos").val()),
       superintendente: $("#superintendente").val(),
-      notas: $("#notes").val()
+      notas: $("#notes").val(),
+      fechaEnvio: obtenerFechaActual() // Agrega la fecha y hora actual al objeto "reporte"
     };
-
+  
+    // Función para obtener la fecha y hora actual en formato legible
+    function obtenerFechaActual() {
+      var fecha = new Date();
+      var dia = fecha.getDate();
+      var mes = fecha.getMonth() + 1; // Los meses comienzan desde 0, así que se agrega 1 al mes actual.
+      var anio = fecha.getFullYear();
+      var hora = fecha.getHours();
+      var minutos = fecha.getMinutes();
+      var segundos = fecha.getSeconds();
+  
+      // Formatea la fecha y la hora como desees, por ejemplo: DD/MM/AAAA HH:MM:SS
+      var fechaFormateada = dia + '/' + mes + '/' + anio + ' ' + hora + ':' + minutos + ':' + segundos;
+      return fechaFormateada;
+    }
  // Envía el objeto JavaScript a Realtime Database
 //db.push(reporte)
 //.then(function() {
