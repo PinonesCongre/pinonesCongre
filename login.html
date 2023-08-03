@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
     <!--BLOQUEO DE COMANDOS-->
     <script src="JS/bloqueo.js"></script>
+    <link rel="stylesheet" href="CSS/custom.css">
+
 </head>
 <body>
  
@@ -105,9 +107,37 @@
                     });
     
                 </script>
+
+                <!-- ... Resto del código ... -->
+
+
+<!-- Nuevo código para cambiar contraseña y mensaje agradable -->
+<!-- Nuevo código para cambiar contraseña y mensaje agradable -->
+<a id="change-password-link" class="change-password" href="cambiocontra.html">Cambiar contraseña</a>
+<!-- Resto del código ... -->
+<script>
+    const changePasswordLink = document.getElementById('change-password-link');
+
+changePasswordLink.addEventListener('click', function(event) {
+  event.preventDefault(); // Evita que el enlace redireccione a la página "cambiarcontraseña.html"
+  const formContainer = document.getElementById('form-container');
+  
+  // Agrega una clase para la animación de giro
+  formContainer.classList.add('rotate-form');
+  
+  // Espera un tiempo para redireccionar a la página "cambiarcontraseña.html" después de la animación
+  setTimeout(() => {
+    window.location.href = this.getAttribute('href');
+  }, 1000); // Ajusta el tiempo según la duración de la animación (en milisegundos)
+});
+
+</script>
+
+<!-- Resto del código ... -->
+
               
                 <button type="submit" id="submit-btn">Ingresar</button>
-                
+
             </form>
       
       
