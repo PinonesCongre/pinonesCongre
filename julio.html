@@ -9,11 +9,10 @@
   <!-- CSS de Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <!-- CSS personalizado -->
-  <link rel="stylesheet" href="ADMI/styles.css">
+  <link rel="stylesheet" href="styles.css">
   <!-- Agrega la biblioteca DataTables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
     <script src="JS/bloqueo.js"></script>
@@ -23,6 +22,7 @@
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+   <!--Configuracion de Script de logueo-->
 
    <style>
     body.dark-mode {
@@ -36,7 +36,6 @@ color: #fff;
   }
 </style>
 
-   <!--Configuracion de Script de logueo-->
    <script src="firebase-config.js"></script>
   
     <!--script de verificacion de logueo-->
@@ -77,7 +76,6 @@ color: #fff;
     }
 
     </script>
-
     <!--MODO OSCURO-->
     <script>
       // Función para habilitar el modo oscuro
@@ -112,8 +110,8 @@ color: #fff;
 <body>
   <div class="container-fluid">
     <div class="row">
-         <!-- Menú lateral -->
-         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <!-- Menú lateral -->
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <a class="navbar-brand" href="/cards.html"><img src="ADMI/favicon.ico" height="35px"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -133,7 +131,7 @@ color: #fff;
               </a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="/historial.html">
+              <a class="nav-link active" href="/historial.html">
                   <i class="fas fa-history mr-2"></i>
                   Historial
               </a>
@@ -145,14 +143,13 @@ color: #fff;
               </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/estadisticas.html">
+                <a class="nav-link" href="/estadisticas.html">
                   <i class="fas fa-project-diagram mr-2"></i>
                    Estadisticas
                 </a>
                 </li>
-               <!-- Agrega el botón de cerrar sesión -->
-              <!-- botón de cerrar sesión actualizado-->
-              <li class="nav-item">
+               <!-- botón de cerrar sesión actualizado-->
+               <li class="nav-item">
                 <button id="cerrar-sesion" class="nav-link btn btn-link" onclick="logout()">
                   <i class="fas fa-sign-out-alt mr-2"></i>
                   Cerrar sesión
@@ -165,6 +162,7 @@ color: #fff;
                   Cambiar tema
                 </button>
               </li>
+           
 
              
           </ul>
@@ -178,95 +176,74 @@ color: #fff;
             });
         </script>
       <!-- Contenido principal -->
-      <div class="container mt-5" style="padding-top: 100px;">
+      
+      <div class="container mt-5" style="padding-top: 50px;">
+        <h2>  Informes de Julio</h2>
         <div class="row">
           <div class="col-sm-6 col-md-4 mb-4">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Grafico de Barras Abril</h5>
-                <p class="card-text">Contiene un grafico de barras con la informacion de las horas en total, publicaciones, videos, revisitas y cursos impartidos durante el mes.</p>
-                <a href="/abrilestadisticas.html" class="btn btn-primary">Ir al Grafico</a>
+                <h5 class="card-title">Grupo 1</h5>
+                <p class="card-text">Informes Completos</p>
+                <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1OQihCo1PiDw1RlGRvT0vkoa9BQwFSsLo" download>Descargar Informe</a>
               </div>
             </div>
           </div>
-
           <div class="col-sm-6 col-md-4 mb-4">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Grafico de Barras Mayo</h5>
-                <p class="card-text">Contiene un grafico de barras con la informacion de las horas en total, publicaciones, videos, revisitas y cursos impartidos durante el mes.</p>
-                <a href="/mayoestadisticas.html" class="btn btn-primary">Ir al Grafico</a>
+                <h5 class="card-title">Grupo 2</h5>
+                <p class="card-text">Informes Completos</p>
+                <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1FEpWlcmidki0iGIWOBQLtRNeGI7FFoJR/export?format=xlsx" download>Descargar Informe</a>
               </div>
             </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Grafico de Barras Junio</h5>
-                <p class="card-text">Contiene un grafico de barras con la informacion de las horas en total, publicaciones, videos, revisitas y cursos impartidos durante el mes.</p>
-                <a href="/junioestadisticas.html" class="btn btn-primary">Ir al Grafico</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Grafico de Barras Julio</h5>
-                <p class="card-text">Contiene un grafico de barras con la informacion de las horas en total, publicaciones, videos, revisitas y cursos impartidos durante el mes.</p>
-                <a href="/julioestadisticas.html" class="btn btn-primary">Ir al Grafico</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Grafico Comparativo</h5>
-                <p class="card-text">Contiene un grafico que permite comparar la informacion de las horas en total, publicaciones, videos, revisitas y cursos de los meses anteriores, viendo si existe una disminucion de los datos.</p>
-                <a href="/comparativo.html" class="btn btn-primary">Ir al Grafico</a>
-              </div>
-            </div>
-          </div>
-
-         
-
-
         </div>
-      
+        <div class="col-sm-6 col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Grupo 3</h5>
+                <p class="card-text">Informes Faltantes no enviados, solicitarlos al secretario.</p>
+                <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1eELXaYVk7K_qJSOg6fS08wbLeIK3-t58" download>Descargar Informe</a>
+              </div>
+            </div>
       </div>
-       
+    
+    <div class="col-sm-6 col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Grupo 4</h5>
+          <p class="card-text">Informes Completos</p>
+          <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1T6S70tTGFdfoTC-VTRxAeQONe1uXRRVu" download>Descargar Informe</a>
         </div>
+      </div>
+  </div>
+  <div class="col-sm-6 col-md-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Informes Completos de Julio</h5>
+        <p class="card-text">Permite la descarga de todos los informes enviados durante el mes de Julio.</p>
+        <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1f-quH_uRrcyRemaFaOQbOgUs4lcmpNyd/export?format=xlsx" download>Descargar Informe</a>
       </div>
     </div>
+</div>
+
   </div>
 
   <!-- Librería de iconos -->
   <script src="https://kit.fontawesome.com/your_kit_id.js"></script>
-
-  <!-- Scripts de Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
-
-<!-- Scripts de DataTables -->
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.js"></script>
-
-
-<script>
-  document.getElementById('cerrar-sesion').addEventListener('click', function(event) {
-    event.preventDefault();
-    Swal.fire({
-      icon: 'success',
-      title: 'Sesión cerrada con éxito',
-      showConfirmButton: false,
-      timer: 1500
-    }).then(function() {
-      window.location.href = '/login.html';
+  <script>
+    document.getElementById('cerrar-sesion').addEventListener('click', function(event) {
+      event.preventDefault();
+      Swal.fire({
+        icon: 'success',
+        title: 'Sesión cerrada con éxito',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        window.location.href = '/login.html';
+      });
     });
-  });
-</script>
+  </script>
 
 
 <script src="/JS/chatbot.js"></script>
