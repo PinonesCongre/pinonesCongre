@@ -110,35 +110,41 @@ $("#report-form").validate({
 //db.push(reporte)
 //.then(function() {
   //console.log("Datos del formulario guardados en Realtime Database");
-  Swal.fire(
-    {
-      title: '¿Está seguro de que desea enviar el informe?',
-      showCancelButton: true,
-      confirmButtonText: 'Enviar',
-      cancelButtonText: 'Cancelar'
-    }).then((result)=>{
-      if (result.isConfirmed){
-        db.push(reporte)
-        .then(function(){
-          console.log("Datos del formulario guardatos en Realtime Database");
-          Swal.fire(
-            '¡Buen trabajo!',
-            'Informe guardado correctamente',
-            'success'
-          )
-          form.reset();
+  Swal.fire({
+    title: '¿Está seguro de que desea enviar el informe?',
+    showCancelButton: true,
+    confirmButtonText: 'Enviar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      db.push(reporte)
+        .then(function() {
+          console.log("Datos del formulario guardados en Realtime Database");
+          Swal.fire({
+            title: '¡Buen trabajo!',
+            text: 'Informe guardado correctamente',
+            icon: 'success'
+          }).then(() => {
+            // Añade la última alerta para refrescar la página
+            Swal.fire({
+              title: 'Para enviar otro informe, por favor, refresque la página.',
+              icon: 'info',
+              confirmButtonText: 'Aceptar'
+            });
+            form.reset();
+          });
         })
-        .cath(function(error){
+        .catch(function(error) {
           console.error("Error al escribir los datos en Realtime Database: ", error);
-          Swal.fire(
-            '¡oops!',
-            'Los datos no fueron guardados',
-            'error'
-          )
-        })
-      }
-    })
-  }
+          Swal.fire({
+            title: '¡Oops!',
+            text: 'Los datos no fueron guardados',
+            icon: 'error'
+          });
+        });
+    }
+  });
+}
 });
 //}
 //});

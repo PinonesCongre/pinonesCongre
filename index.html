@@ -80,7 +80,6 @@
 
     </style>
 
-
 </head>
 </head>
 <body>    
@@ -213,6 +212,93 @@
 <script src="JS/RTDB.js"></script>
 
 <script src="/JS/info.js"></script>
+<!-- CODIGO PARA PUBLICADOR-->
+
+<script src="/JS/publicador.js"></script>
+
+<!-- Publicador -->
+<script>
+  // Espera a que el documento esté listo
+  document.addEventListener('DOMContentLoaded', function () {
+      // Obtén el elemento select del rol
+      var rolSelect = document.getElementById('rol');
+
+      // Agrega un evento 'change' al select
+      rolSelect.addEventListener('change', function () {
+          // Obtiene el valor seleccionado
+          var selectedValue = rolSelect.value;
+
+          // Verifica si se seleccionó "Publicador"
+          if (selectedValue === 'Publicador') {
+              // Muestra el SweetAlert con formato HTML
+              Swal.fire({
+                  title: 'Aviso',
+                  icon: 'warning',
+                  html: 'Has seleccionado la opción <strong>"Publicador"</strong>.<br><br>' +
+                  '<strong>1) Deberá indicar si participó de alguna manera en el ministerio durante el mes en el área de notas.</strong><br>' +
+                  '<strong>2) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
+                  confirmButtonText: 'Aceptar'
+              });
+          }
+      });
+  });
+</script>
+<!-- Precursor Regular -->
+<script>
+  // Espera a que el documento esté listo
+  document.addEventListener('DOMContentLoaded', function () {
+      // Obtén el elemento select del rol
+      var rolSelect = document.getElementById('rol');
+
+      // Agrega un evento 'change' al select
+      rolSelect.addEventListener('change', function () {
+          // Obtiene el valor seleccionado
+          var selectedValue = rolSelect.value;
+
+          // Verifica si se seleccionó "Publicador"
+          if (selectedValue === 'Precursor Regular') {
+              // Muestra el SweetAlert con formato HTML
+              Swal.fire({
+                  title: 'Aviso',
+                  icon: 'warning',
+                  html: 'Has seleccionado la opción <strong>"Precursor Regular"</strong>.<br><br>' +
+                  '<strong>1) Deberá indicar el numero de horas que dedico al ministerio.</strong><br>' +
+                  '<strong>2) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
+                  confirmButtonText: 'Aceptar'
+              });
+          }
+      });
+  });
+</script>
+
+<!-- Precursor Auxiliar-->
+
+<script>
+  // Espera a que el documento esté listo
+  document.addEventListener('DOMContentLoaded', function () {
+      // Obtén el elemento select del rol
+      var rolSelect = document.getElementById('rol');
+
+      // Agrega un evento 'change' al select
+      rolSelect.addEventListener('change', function () {
+          // Obtiene el valor seleccionado
+          var selectedValue = rolSelect.value;
+
+          // Verifica si se seleccionó "Publicador"
+          if (selectedValue === 'Precursor Auxiliar') {
+              // Muestra el SweetAlert con formato HTML
+              Swal.fire({
+                  title: 'Aviso',
+                  icon: 'warning',
+                  html: 'Has seleccionado la opción <strong>"Precursor Auxiliar"</strong>.<br><br>' +
+                  '<strong>1) Deberá indicar el numero de horas que dedico al ministerio.</strong><br>' +
+                  '<strong>2) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
+                  confirmButtonText: 'Aceptar'
+              });
+          }
+      });
+  });
+</script>
 
 <footer>
     <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.

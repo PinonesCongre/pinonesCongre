@@ -8,31 +8,34 @@
   <script src="https://kit.fontawesome.com/8dca05f736.js"></script>
   <!-- CSS de Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Agrega la biblioteca DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
     <script src="JS/bloqueo.js"></script>
-     <!--Firebase-->
+
+    <!--Firebase-->
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+   <!--Configuracion de Script de logueo-->
 
    <style>
     body.dark-mode {
-    background-color: #343a40;
-    color: #fff;
-      }
+background-color: #343a40;
+color: #fff;
+  }
 
-      body.dark-mode .card {
-        background-color: #212529;
-        color: #fff;
-      }
-      .card {
-      margin-top: 35px;
-    }
+  body.dark-mode .card {
+    background-color: #212529;
+    color: #fff;
+  }
 </style>
 
-   <!--Configuracion de Script de logueo-->
    <script src="firebase-config.js"></script>
   
     <!--script de verificacion de logueo-->
@@ -73,7 +76,6 @@
     }
 
     </script>
-
     <!--MODO OSCURO-->
     <script>
       // Función para habilitar el modo oscuro
@@ -174,129 +176,59 @@
             });
         </script>
       <!-- Contenido principal -->
-      <div class="container mt-5" style="padding-top: 20px;">
+      
+      <div class="container mt-5" style="padding-top: 50px;">
+        <h2>  Informes de Septiembre</h2>
         <div class="row">
           <div class="col-sm-6 col-md-4 mb-4">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Informes del mes de Abril 2023</h5>
-                <p class="card-text"></p>
-                <a href="/abril.html" class="btn btn-primary">Ir a Informes Abril</a>
+                <h5 class="card-title">Grupo 1</h5>
+                <p class="card-text">Informes Completos</p>
+                <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1e7IKqWceFzIbfjhVVHPOPiiZ0Z-mX4FT" download>Descargar Informe</a>
+              </div>
             </div>
           </div>
+          <div class="col-sm-6 col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Grupo 2</h5>
+                <p class="card-text">Informes Completos</p>
+                <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1Men4xrcDQGCwejm0OHaKNfs5xO5qbgsp/export?format=xlsx" download>Descargar Informe</a>
+              </div>
+            </div>
         </div>
         <div class="col-sm-6 col-md-4 mb-4">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Informes del mes de Mayo 2023</h5>
-                <p class="card-text"></p>
-                <a href="/mayo.html" class="btn btn-primary">Ir a Informes Mayo</a>
+                <h5 class="card-title">Grupo 3</h5>
+                <p class="card-text">Informes Completos</p>
+                <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1cYmmTzayk-Bj6VES_QhMxGCFAIdfGj1M" download>Descargar Informe</a>
+              </div>
             </div>
-          </div>
+      </div>
+    <div class="col-sm-6 col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Grupo 4</h5>
+          <p class="card-text">Informes Completos</p>
+          <a class="btn btn-primary"href="https://drive.google.com/uc?export=download&id=1TuKKzhezbKKi_fciNF1k1c-UEgWPgMLG" download>Descargar Informe</a>
         </div>
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Junio 2023</h5>
-                <p class="card-text"></p>
-                <a href="/junio.html" class="btn btn-primary">Ir a Informes Junio</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Julio 2023</h5>
-                <p class="card-text"></p>
-                <a href="julio.html" class="btn btn-primary">Ir a Informes Julio</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Agosto 2023</h5>
-                <p class="card-text"></p>
-                <a href="agosto.html" class="btn btn-primary">Ir a Informes Agosto</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Septiembre 2023</h5>
-                <p class="card-text"></p>
-                <a href="septiembre.html" class="btn btn-primary">Ir a Informes Septiembre</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Octubre 2023</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary disabled" >Ir a Informes Octubre</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Noviembre 2023</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary disabled">Ir a Informes Noviembre</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Diciembre 2023</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary disabled">Ir a Informes Diciembre</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Enero 2024</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary disabled">Ir a Informes Enero</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Febrero 2024</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary disabled">Ir a Informes Febrero</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Informes del mes de Marzo 2024</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary disabled">Ir a Informes Marzo</a>
-            </div>
-          </div>
-        </div>
-        <!--Aqui va la siguiente card-->
+      </div>
+  </div>
+  <div class="col-sm-6 col-md-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Informes Completos de Septiembre</h5>
+        <p class="card-text">Permite la descarga de todos los informes enviados durante el mes de Septiembre.</p>
+        <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/19stSHEdYZjvmaW_g_qbkfhp73bDOcKmR/export?format=xlsx" download>Descargar Informe</a>
       </div>
     </div>
+</div>
   </div>
 
   <!-- Librería de iconos -->
   <script src="https://kit.fontawesome.com/your_kit_id.js"></script>
-
   <script>
     document.getElementById('cerrar-sesion').addEventListener('click', function(event) {
       event.preventDefault();
@@ -310,6 +242,7 @@
       });
     });
   </script>
+
 
 <script src="/JS/chatbot.js"></script>
 

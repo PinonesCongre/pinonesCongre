@@ -50,7 +50,7 @@ $(document).ready(function() {
 
     // Cambios del hijo 
     coleccionInformes.on('child_changed', datos => {           
-        dataSet = [datos.key, datos.child("nombre").val(), datos.child("rol").val(), datos.child("publicaciones").val(), datos.child("horas").val(), datos.child("revisitas").val(),datos.child("cursosBiblicos").val(),datos.child("videos").val(),datos.child("superintendente").val(),datos.child("notas").val() ];
+        dataSet = [datos.key, datos.child("nombre").val(), datos.child("rol").val(), datos.child("publicaciones").val(), datos.child("horas").val(), datos.child("revisitas").val(),datos.child("cursosBiblicos").val(),datos.child("videos").val(),datos.child("superintendente").val(),datos.child("notas").val()];
         table.row(filaEditada).data(dataSet).draw();
     });
 
@@ -70,7 +70,7 @@ $(document).ready(function() {
         let cursosBiblicos = $.trim($('#cursosBiblicos').val());
         let videos = $.trim($('#videos').val());
         let superintendente = $.trim($('#superintendente').val());
-        let notas = $.trim($('#notas').val());                         
+        let notas = $.trim($('#notas').val());                      
         let idFirebase = id;        
         if (idFirebase == '') {                      
             idFirebase = coleccionusers.push().key;
