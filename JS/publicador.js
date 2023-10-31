@@ -1,77 +1,28 @@
-  const rolField = document.getElementById('rol');
-  const publicationsField = document.getElementById('publications');
-  const hoursField = document.getElementById('hours');
-  const visitsField = document.getElementById('visits');
-  const videosField = document.getElementById('videos');
+  // Espera a que el documento esté listo
+  document.addEventListener('DOMContentLoaded', function () {
+    // Obtén el elemento select del rol
+    var rolSelect = document.getElementById('rol');
+    var hoursInput = document.getElementById('hours');
 
-  const originalHoursStyle = {
-    opacity: window.getComputedStyle(hoursField).getPropertyValue('opacity'),
-    backgroundColor: window.getComputedStyle(hoursField).getPropertyValue('background-color'),
-  };
+    // Agrega un evento 'change' al select
+    rolSelect.addEventListener('change', function () {
+      // Obtiene el valor seleccionado
+      var selectedValue = rolSelect.value;
 
-  const resetHoursStyle = () => {
-    hoursField.style.opacity = originalHoursStyle.opacity;
-    hoursField.style.backgroundColor = originalHoursStyle.backgroundColor;
-  };
+      if (selectedValue === 'Publicador') {
+        // Deshabilita el campo de horas y establece su valor en 0
+        hoursInput.disabled = true;
+        hoursInput.value = 0;
 
-  rolField.addEventListener('change', function () {
-    const selectedRol = rolField.value;
-
-    const optionsToDisable = ['Publicador', 'Precursor Auxiliar'];
-
-    if (optionsToDisable.includes(selectedRol)) {
-      publicationsField.value = '0';
-      hoursField.value = '0';
-      visitsField.value = '0';
-      videosField.value = '0';
-      publicationsField.disabled = true;
-      hoursField.disabled = true;
-      visitsField.disabled = true;
-      videosField.disabled = true;
-      publicationsField.style.opacity = 0.5;
-      hoursField.style.opacity = 0.5;
-      visitsField.style.opacity = 0.5;
-      videosField.style.opacity = 0.5;
-      publicationsField.style.backgroundColor = '#e0e0e0';
-      hoursField.style.backgroundColor = '#e0e0e0';
-      visitsField.style.backgroundColor = '#e0e0e0';
-      videosField.style.backgroundColor = '#e0e0e0';
-
-      if (selectedRol === 'Precursor Regular') {
-        hoursField.disabled = false;
-        resetHoursStyle();
+        // Cambia el estilo del campo para indicar que está deshabilitado
+        hoursInput.style.backgroundColor = '#e0e0e0';
+        hoursInput.style.color = '#808080';
+      } else {
+        // Habilita el campo de horas y restablece su estilo y valor
+        hoursInput.disabled = false;
+        hoursInput.style.backgroundColor = '#fff';
+        hoursInput.style.color = '#000';
+        hoursInput.value = ''; // Puedes restablecer el valor si es necesario
       }
-    } else {
-      publicationsField.disabled = false;
-      hoursField.disabled = false;
-      visitsField.disabled = false;
-      videosField.disabled = false;
-      publicationsField.style.opacity = 1;
-      visitsField.style.opacity = 1;
-      videosField.style.opacity = 1;
-      publicationsField.style.backgroundColor = '';
-
-      if (selectedRol === 'Precursor Regular') {
-        publicationsField.value = '0';
-        visitsField.value = '0';
-        videosField.value = '0';
-        publicationsField.disabled = true;
-        visitsField.disabled = true;
-        videosField.disabled = true;
-        publicationsField.style.opacity = 0.5;
-        visitsField.style.opacity = 0.5;
-        videosField.style.opacity = 0.5;
-        publicationsField.style.backgroundColor = '#e0e0e0';
-        visitsField.style.backgroundColor = '#e0e0e0';
-        videosField.style.backgroundColor = '#e0e0e0';
-      }
-    }
-    
-    // Habilitar el campo "Número de Horas" cuando se selecciona "Precursor Auxiliar"
-    if (selectedRol === 'Precursor Auxiliar') {
-      hoursField.disabled = false;
-      resetHoursStyle();
-    }
+    });
   });
-
-  resetHoursStyle();

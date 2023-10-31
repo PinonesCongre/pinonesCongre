@@ -15,6 +15,7 @@ firebase.initializeApp(firebaseConfig);
 // Obtiene una referencia a la base de datos de Realtime
 var db = firebase.database().ref("users");
 
+
 // Agrega un controlador de eventos para el evento "submit" del formulario
 $("#report-form").validate({
   rules: {
@@ -22,23 +23,11 @@ $("#report-form").validate({
     rol: {
       required: true
     },
-    publicaciones: {
-      required: true,
-      digits: true
-    },
     horas: {
       required: true,
       digits: true
     },
-    revisitas: {
-      required: true,
-      digits: true
-    },
     cursosBiblicos: {
-      required: true,
-      digits: true
-    },
-    videos: {
       required: true,
       digits: true
     },
@@ -49,24 +38,12 @@ $("#report-form").validate({
     rol: {
       required: "Por favor, ingrese su rol"
     },
-    publicaciones: {
-      required: "Por favor, ingrese el número de publicaciones",
-      digits: "Por favor, ingrese solo números enteros"
-    },
     horas: {
       required: "Por favor, ingrese el número de horas",
       digits: "Por favor, ingrese solo números enteros"
     },
-    revisitas: {
-      required: "Por favor, ingrese el número de revisitas",
-      digits: "Por favor, ingrese solo números enteros"
-    },
     cursosBiblicos: {
       required: "Por favor, ingrese el número de cursos bíblicos",
-      digits: "Por favor, ingrese solo números enteros"
-    },
-    videos: {
-      required: "Por favor, ingrese el número de videos mostrados",
       digits: "Por favor, ingrese solo números enteros"
     },
     superintendente: "Por favor, ingrese el nombre de su superintendente"
@@ -82,11 +59,9 @@ $("#report-form").validate({
     var reporte = {
       nombre: $("#name").val(),
       rol: $("#rol").val(),
-      publicaciones: parseInt($("#publications").val()),
       horas: parseInt($("#hours").val()),
-      revisitas: parseInt($("#visits").val()),
       cursosBiblicos: parseInt($("#bibleCourse").val()),
-      videos: parseInt($("#videos").val()),
+      participo: $("#ministery").prop("checked") ? "Sí" : "No",
       superintendente: $("#superintendente").val(),
       notas: $("#notes").val(),
       fechaEnvio: obtenerFechaActual() // Agrega la fecha y hora actual al objeto "reporte"

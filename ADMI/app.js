@@ -44,13 +44,13 @@ $(document).ready(function() {
 
     // Muestra datos de DataTables
     coleccionInformes.on("child_added", datos => {        
-        dataSet = [datos.key, datos.child("nombre").val(),datos.child("rol").val(), datos.child("publicaciones").val(), datos.child("horas").val(), datos.child("revisitas").val(),datos.child("cursosBiblicos").val(),datos.child("videos").val(),datos.child("superintendente").val(),datos.child("notas").val(),datos.child("fechaEnvio").val()];
+        dataSet = [datos.key, datos.child("nombre").val(), datos.child("rol").val(), datos.child("participo").val(), datos.child("cursosBiblicos").val(), datos.child("horas").val(), datos.child("superintendente").val(), datos.child("notas").val(), datos.child("fechaEnvio").val()];
         table.rows.add([dataSet]).draw();
     });
 
     // Cambios del hijo 
     coleccionInformes.on('child_changed', datos => {           
-        dataSet = [datos.key, datos.child("nombre").val(), datos.child("rol").val(), datos.child("publicaciones").val(), datos.child("horas").val(), datos.child("revisitas").val(),datos.child("cursosBiblicos").val(),datos.child("videos").val(),datos.child("superintendente").val(),datos.child("notas").val()];
+        dataSet = [datos.key, datos.child("nombre").val(), datos.child("rol").val(), datos.child("participo").val(), datos.child("cursosBiblicos").val(), datos.child("horas").val(), datos.child("superintendente").val(), datos.child("notas").val()];
         table.row(filaEditada).data(dataSet).draw();
     });
 
@@ -63,12 +63,10 @@ $(document).ready(function() {
         e.preventDefault();
         let id = $.trim($('#id').val());        
         let nombre = $.trim($('#nombre').val());
-        let rol = $.trim($('#rol').val());         
-        let publicaciones = $.trim($('#publicaciones').val());
-        let horas = $.trim($('#horas').val());
-        let revisitas = $.trim($('#revisitas').val());
+        let rol = $.trim($('#rol').val());
+        let participo = $.trim($('#participo').val());
         let cursosBiblicos = $.trim($('#cursosBiblicos').val());
-        let videos = $.trim($('#videos').val());
+        let horas = $.trim($('#horas').val());
         let superintendente = $.trim($('#superintendente').val());
         let notas = $.trim($('#notas').val());                      
         let idFirebase = id;        
@@ -78,11 +76,9 @@ $(document).ready(function() {
         data = {
             nombre: nombre,
             rol: rol,
-            publicaciones: publicaciones,
-            horas: horas,
-            revisitas: revisitas,
+            participo: participo,
             cursosBiblicos: cursosBiblicos,
-            videos: videos,
+            horas: horas,
             superintendente: superintendente,
             notas: notas
         };             
@@ -99,22 +95,21 @@ $(document).ready(function() {
         filaEditada = table.row($(this).parents('tr'));
         let fila = $('#tablaInformes').dataTable().fnGetData($(this).closest('tr'));
         let id = fila[0];
-        let nombre = $(this).closest('tr').find('td:eq(0)').text();
-        let rol = $(this).closest('tr').find('td:eq(1)').text();
-        let publicaciones = parseInt($(this).closest('tr').find('td:eq(2)').text());
-        let horas = parseInt($(this).closest('tr').find('td:eq(3)').text());
-        let revisitas = parseInt($(this).closest('tr').find('td:eq(4)').text());
-        let cursosBiblicos = parseInt($(this).closest('tr').find('td:eq(5)').text());
-        let videos = parseInt($(this).closest('tr').find('td:eq(6)').text());
-        let superintendente = $(this).closest('tr').find('td:eq(7)').text();
-        let notas = $(this).closest('tr').find('td:eq(8)').text();
+        let nombre = $(this).closest('tr').find('td:eq(1)').text();
+        let rol = $(this).closest('tr').find('td:eq(2)').text();
+        let participo = parseInt($(this).closest('tr').find('td:eq(3)').text());
+        let cursosBiblicos = parseInt($(this).closest('tr').find('td:eq(4)').text());
+        let horas = parseInt($(this).closest('tr').find('td:eq(5)').text());
+        let superintendente = $(this).closest('tr').find('td:eq(6)').text();
+        let notas = $(this).closest('tr').find('td:eq(7)').text();
     
         // Opciones para el campo "superintendente"
         let superintendenteOptions = [
             'Alfonso.P Grupo 1',
             'Rafael.G Grupo 2',
             'Alberto.G Grupo 3',
-            'Josue.T Grupo 4'
+            'Josue.T Grupo 4',
+            'Mario.B & Marco.H Grupo 5'
         ];
     
         // Crear las opciones del campo "superintendente" para el cuadro de diálogo
@@ -135,16 +130,12 @@ $(document).ready(function() {
                 '<option value="Precursor Auxiliar" ' + (rol === 'Precursor Auxiliar' ? 'selected' : '') + '>Precursor Auxiliar</option>' +
                 '<option value="Precursor Regular" ' + (rol === 'Precursor Regular' ? 'selected' : '') + '>Precursor Regular</option>' +
                 '</select>' +
-                '<label for="swal-publicaciones">Publicaciones:</label>' +
-                '<input id="swal-publicaciones" class="swal2-input" value="' + publicaciones + '">' +
                 '<label for="swal-horas">Horas:</label>' +
                 '<input id="swal-horas" class="swal2-input" value="' + horas + '">' +
-                '<label for="swal-revisitas">Revisitas:</label>' +
-                '<input id="swal-revisitas" class="swal2-input" value="' + revisitas + '">' +
                 '<label for="swal-cursosBiblicos">Cursos Bíblicos:</label>' +
                 '<input id="swal-cursosBiblicos" class="swal2-input" value="' + cursosBiblicos + '">' +
-                '<label for="swal-videos">Videos:</label>' +
-                '<input id="swal-videos" class="swal2-input" value="' + videos + '">' +
+                '<label for="swal-participo">Participo:</label>' +
+                '<input id="swal-participo" class="swal2-input" value="' + participo + '">' +
                 '<label for="swal-superintendente">Superintendente:</label>' +
                 '<select id="swal-superintendente" class="swal2-input">' +
                 superintendenteOptionsHTML +
@@ -160,16 +151,14 @@ $(document).ready(function() {
                 // Obtener los valores de los campos de entrada del cuadro de diálogo
                 let editedNombre = $('#swal-nombre').val();
                 let editedRol = $('#swal-rol').val();
-                let editedPublicaciones = parseInt($('#swal-publicaciones').val());
                 let editedHoras = parseInt($('#swal-horas').val());
-                let editedRevisitas = parseInt($('#swal-revisitas').val());
                 let editedCursosBiblicos = parseInt($('#swal-cursosBiblicos').val());
-                let editedVideos = parseInt($('#swal-videos').val());
+                let editedParticipo = parseInt($('#swal-participo').val());
                 let editedSuperintendente = $('#swal-superintendente').val();
                 let editedNotas = $('#swal-notas').val();
     
                 // Actualizar los datos en la tabla
-                let newData = [id, editedNombre, editedRol, editedPublicaciones, editedHoras, editedRevisitas, editedCursosBiblicos, editedVideos, editedSuperintendente, editedNotas];
+                let newData = [id, editedNombre, editedRol, editedHoras, editedCursosBiblicos, editedParticipo, editedSuperintendente, editedNotas];
                 table.row(filaEditada).data(newData).draw();
     
                 // Actualizar los datos en la base de datos (Firebase)
@@ -177,11 +166,9 @@ $(document).ready(function() {
                 informeRef.update({
                     nombre: editedNombre,
                     rol: editedRol,
-                    publicaciones: editedPublicaciones,
-                    horas: editedHoras,
-                    revisitas: editedRevisitas,
+                    participo: editedParticipo,
                     cursosBiblicos: editedCursosBiblicos,
-                    videos: editedVideos,
+                    horas: editedHoras,       
                     superintendente: editedSuperintendente,
                     notas: editedNotas
                 });

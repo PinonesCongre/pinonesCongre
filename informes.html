@@ -221,6 +221,7 @@
                                     <label>Nombre</label>
                                     <input id="nombre" type="text" class="form-control" required>
                                     </div>    
+
                                     <div class="form-group">
                                     <label>rol</label>
                                     <select id="rol" type="text" class="form-control" required>
@@ -230,26 +231,22 @@
                                         <option value="Precursor Regular">Precursor Regular</option>
                                     </select>
                                     </div>
+
                                     <div class="form-group">
-                                    <label>Publicaciones</label>
-                                    <input id="publicaciones" type="number" class="form-control" required>
-                                    </div>
+                                      <label>Participo</label>
+                                      <input id="participo" type="number" class="form-control" required>
+                                      </div>        
+      
+                                      <div class="form-group">
+                                        <label>Cursos</label>
+                                        <input id="cursosBiblicos" type="number" class="form-control" required>
+                                        </div>        
+    
                                     <div class="form-group">
                                     <label>Horas</label>
                                      <input id="horas" type="number" class="form-control" required>
                                     </div> 
-                                    <div class="form-group">
-                                    <label>Revisitas</label>
-                                    <input id="revisitas" type="number" class="form-control" required>
-                                    </div>     
-                                    <div class="form-group">
-                                    <label>Cursos</label>
-                                    <input id="cursosBiblicos" type="number" class="form-control" required>
-                                    </div>        
-                                    <div class="form-group">
-                                    <label>Videos</label>
-                                    <input id="videos" type="number" class="form-control" required>
-                                    </div>  
+
                                     <div class="form-group">
                                     <label>Superintendente</label>
                                     <select id="superintendente" type="text" class="form-control" required>
@@ -258,11 +255,11 @@
                                         <option value="Rafael.G Grupo 2">Rafael.G Grupo 2</option>
                                         <option value="Alberto.G Grupo 3">Alberto.G Grupo 3</option>
                                         <option value="Josue.T Grupo 4">Josue.T Grupo 4</option>
+                                        <option value="Mario.B & Marco.H Grupo 5">Mario.B & Marco.H Grupo 5</option>
                                     </select>
-                                    <!--
-                                          <input id="supervisor" type="text" class="form-control" required>
-                                    -->
+
                                     </div>
+
                                     <div class="form-group">
                                     <label>Notas</label>
                                     <input id="notas" type="text" class="form-control">
@@ -282,22 +279,19 @@
         <div class="table-responsive" >
           <table id="tablaInformes"  class="table table-bordered display nowrap" cellspacing="0" style="width: 100%;">
             <thead class="text-center">
-                <tr>
-                    <th>ID</th>                        
-                    <th>NOMBRE</th>
-                    <th>ROL</th>
-                    <th>PUBLICACIONES</th>
-                    <th>HORAS</th>                                                          
-                    <th>REVISITAS</th>
-                    <th>CURSOS</th>
-                    <th>VIDEOS</th>
-                    <th>SUPERINTENDENTE</th>
-                    <th>NOTAS</th>
-                    <th>FECHA DE ENVIO</th>
-                    <th>ACCIONES</th>
-                  
-                </tr>
-            </thead>
+              <tr>
+                  <th>ID</th>                        
+                  <th>NOMBRE</th>
+                  <th>ROL</th>
+                  <th>MINISTERIO</th>
+                  <th>CURSOS</th>
+                  <th>HORAS</th>                                                          
+                  <th>SUPERINTENDENTE</th>
+                  <th>NOTAS</th>
+                  <th>FECHA DE ENVIO</th>
+                  <th>ACCIONES</th>
+              </tr>
+          </thead>
         </table>
         </div>
       </div>
