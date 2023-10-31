@@ -61,7 +61,7 @@ $("#report-form").validate({
       rol: $("#rol").val(),
       horas: parseInt($("#hours").val()),
       cursosBiblicos: parseInt($("#bibleCourse").val()),
-      participo: $("#ministery").prop("checked") ? "Sí" : "No",
+      participo: $("#participo").prop("checked") ? "Sí" : "No",
       superintendente: $("#superintendente").val(),
       notas: $("#notes").val(),
       fechaEnvio: obtenerFechaActual() // Agrega la fecha y hora actual al objeto "reporte"

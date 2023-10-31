@@ -120,15 +120,6 @@ form input, form select, form textarea{
 }
 */
 
-#ministery {
-	width: 20px;
-	height: 20px;
-	border: 1px solid #000; /* Borde del checkbox */
-	border-radius: 3px; /* Bordes redondeados */
-	background-color: #ccc; /* Color de fondo */
-	margin-right: 246px;
-	margin-left: 246px;
-  }
 #info-icon-container {
     position: absolute;
     top: 25px;
@@ -175,7 +166,9 @@ form input, form select, form textarea{
 	font-size: 24px;
 	color: #000000;
 }
-
+input[type="checkbox"] {
+	height: 20px;
+}
 
 #dark{
 	width: 35px;
@@ -196,6 +189,7 @@ form input, form select, form textarea{
 html.dark-mode{
 	filter: invert(100%);
 }
+
 
 /*responsive */
 
@@ -223,10 +217,7 @@ html.dark-mode{
 		padding: 8px 16px; /* ajustar el padding de los botones */
 		font-size: 16px; /* ajustar el tamaño de fuente de los botones */
 	  }
-	  #ministery{
-		margin-right: 385px;
-		margin-left: 385px;
-	  }
+	
 }
 
 
@@ -254,10 +245,7 @@ html.dark-mode{
 		padding: 8px 16px; /* ajustar el padding de los botones */
 		font-size: 16px; /* ajustar el tamaño de fuente de los botones */
 	  }
-	  #ministery{
-		margin-right: 225px;
-		margin-left: 225px;
-	  }
+	
 }
 
 
@@ -285,10 +273,7 @@ html.dark-mode{
 	  padding: 8px 16px; /* ajustar el padding de los botones */
 	  font-size: 16px; /* ajustar el tamaño de fuente de los botones */
 	}
-	#ministery{
-		margin-right: 245px;
-		margin-left: 245px;
-	  }
+
   }
 
   @media (max-width: 480px) {
@@ -315,10 +300,7 @@ html.dark-mode{
 	  padding: 8px 16px; /* ajustar el padding de los botones */
 	  font-size: 16px; /* ajustar el tamaño de fuente de los botones */
 	}
-	#ministery{
-		margin-right: 126px;
-		margin-left: 126px;
-	  }
+	
   }
 
   @media (max-width: 320px) {
@@ -345,10 +327,5 @@ html.dark-mode{
 	  padding: 8px 16px; /* ajustar el padding de los botones */
 	  font-size: 16px; /* ajustar el tamaño de fuente de los botones */
 	}
-
-	#ministery{
-		margin-right: 90px;
-		margin-left: 90px;
-	  }
 	
   }
