@@ -13,7 +13,7 @@ eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/
     function cerrarSesion() {
       firebase.auth().signOut().then(function() {
         // Sign-out successful.
-        window.location.href = "login.html"; // Redirigir a la página de inicio de sesión
+        window.location.href = "/yetilogin/indexyeti.html"; // Redirigir a la página de inicio de sesión
       }).catch(function(error) {
         // An error happened.
         console.log(error);

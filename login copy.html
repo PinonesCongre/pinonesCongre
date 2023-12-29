@@ -1,0 +1,156 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congregacion Piñones</title>
+    <!--FAVICON-->
+    <link rel="icon" href="img/favicon.ico">
+    <!--ESTILOS-->
+    <link rel="stylesheet" href="CSS/login.css">
+    <!--FUENTE DE LA PAGINA-->
+    <link rel= "stylesheet" type= "text/css" herf= "http.//fonts.googleapis.com/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-lr5z5Z5i5wtYltPp17LKtEMxeMYiZXyfzK25I1F8WltiNQ9mZnp1DMH3q8oWrx6gFQD7y1HX52ovGM90TNUhOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--ICONOS DE LA PAGINA-->
+    <script src="https://kit.fontawesome.com/8dca05f736.js" crossorigin="anonymous"></script>
+    
+    <!--VALIDACION-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <!--FIREBASE-->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <!--POP-UP-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+    <!--BLOQUEO DE COMANDOS-->
+    <script src="JS/bloqueo.js"></script>
+    <link rel="stylesheet" href="CSS/custom.css">
+
+</head>
+<body>
+ 
+    <!--Boton para cambiar el tema a oscuro-->
+    <a href="/index.html"><button type="button" class="home" id="home">
+        <i class="fas fa-home"></i>
+    </button></a>
+
+    <!--    <button  type="button" class="dark-mode-button" id="dark-mode" onclick="document.documentElement.classList.toggle('dark-mode')">
+        <img id="dark"src="/img/day.png"  alt="">
+    </button> -->
+   
+    
+     <!--Login -->
+
+    <div id="form-container">
+        <h2>Iniciar Sesión</h2>
+     
+            <form id="login-form">
+                <label for="email">correo electrónico: </label>
+                <input type="email" id="email" name="email" placeholder="correo electrónico" required>
+    
+           
+                <label for="password">contraseña:</label>
+                <div class="password-container">
+                <input type="password" minlength="6" id="password" name="password" placeholder="contraseña" required>
+                <span class="password-toggle"><i class="fas fa-eye"></i></span>
+                </div>
+    
+    
+                <style>
+                    .password-container {
+                    position: relative;
+                    }
+    
+                    .password-toggle {
+                    position: absolute;
+                    top: 50%;
+                    right: 10px;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                    }
+    
+                    .password-toggle i {
+                    color: #000000;
+                    }
+    
+                    .password-toggle i:hover {
+                    color: #000000;
+                    }
+    
+                    .password-toggle.active i {
+                    color: #000000;
+                    }
+    
+                    .password-toggle.active i::before {
+                    content: "\f070";
+                    }
+    
+                    .password-toggle i::before {
+                    content: "\f06e";
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    }
+    
+    
+                </style>
+    
+                <script>
+                    const passwordToggle = document.querySelector('.password-toggle');
+                    const passwordInput = document.getElementById('password');
+    
+                    passwordToggle.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    this.classList.toggle('active');
+                    });
+    
+                </script>
+
+                <!-- ... Resto del código ... -->
+
+<!-- Nuevo código para cambiar contraseña y mensaje agradable -->
+<a id="change-password-link" class="change-password" href="cambiocontra.html">Cambiar contraseña</a>
+<!-- Resto del código ... -->
+<script>
+    const changePasswordLink = document.getElementById('change-password-link');
+
+changePasswordLink.addEventListener('click', function(event) {
+  event.preventDefault(); // Evita que el enlace redireccione a la página "cambiarcontraseña.html"
+  const formContainer = document.getElementById('form-container');
+  
+  // Agrega una clase para la animación de giro
+  formContainer.classList.add('rotate-form');
+  
+  // Espera un tiempo para redireccionar a la página "cambiarcontraseña.html" después de la animación
+  setTimeout(() => {
+    window.location.href = this.getAttribute('href');
+  }, 1000); // Ajusta el tiempo según la duración de la animación (en milisegundos)
+});
+
+</script>
+
+<!-- Resto del código ... -->
+
+              
+                <button type="submit" id="submit-btn">Ingresar</button>
+
+            </form>
+      
+      
+    </div>
+
+ 
+</body>
+
+<footer>
+    <div class="footer-container">
+      <p>Todos los derechos reservados &copy; 2023 | Leonardo Gonzalez</p>
+      <p>Desarrollado por <a href="#">Leonardo Gonzalez</a></p>
+    </div>
+  </footer>
+<script src="JS/login.js"></script>
+
+
+</html>
