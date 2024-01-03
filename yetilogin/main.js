@@ -11,35 +11,61 @@ const firebaseConfig = {
   };
 
   firebase.initializeApp(firebaseConfig);
-  
-  // Función para iniciar sesión
-  // ...
 
-// Función para iniciar sesión
-function iniciarSesion(event) {
-    event.preventDefault(); // Detener la recarga automática del formulario
-  
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-  
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Inicio de sesión exitoso
-        const user = userCredential.user;
-        console.log('Inicio de sesión exitoso:', user);
-  
-        // Redirigir a otra página después del inicio de sesión
-        window.location.href = '/cards.html';
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error('Error al iniciar sesión:', errorMessage);
-        // Puedes mostrar un mensaje de error al usuario si lo deseas
-      });
+  $(document).ready(function() {
+    $("#submit-btn").click(function(event) {
+      event.preventDefault(); // Detener la recarga automática del formulario
+
+      const email = $('#loginEmail').val();
+      const password = $('#loginPassword').val();
+
+      // Validar el formato del correo electrónico
+      if (!isValidEmail(email)) {
+        // Mostrar mensaje de error con SweetAlert
+        Swal.fire({
+          icon: 'error',
+          title: 'Formato de correo incorrecto',
+          text: 'Por favor, ingrese un correo electrónico válido.'
+        });
+        return;
+      }
+
+      // Validar la longitud de la contraseña
+      if (password.length < 8) {
+        // Mostrar mensaje de error con SweetAlert
+        Swal.fire({
+          icon: 'error',
+          title: 'Contraseña demasiado corta',
+          text: 'La contraseña debe tener al menos 8 caracteres.'
+        });
+        return;
+      }
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log('Inicio de sesión exitoso:', user);
+          
+          // Redirigir a otra página después del inicio de sesión
+          window.location.href = '/cards.html';
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error('Error al iniciar sesión:', errorMessage);
+
+          // Mostrar un mensaje de error genérico con SweetAlert
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al iniciar sesión',
+            text: 'Tu correo o contraseña son incorrectos. Por favor, intenta de nuevo.'
+          });
+        });
+    });
+  });
+
+  // Función para validar el formato del correo electrónico
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
-  
-  // Asociar la función con el evento de clic del botón
-  document.getElementById('submit-btn').addEventListener('click', iniciarSesion);
-  

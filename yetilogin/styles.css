@@ -1,42 +1,50 @@
 /* colors */
 html {
-    width: 100%;
-    height: 100%;
-  }
-  
-  body {
-    background-color: #eff3f4;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  footer {
-    margin-top: auto;
-   }
-  form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    background-color: #FFF;
-    margin: 0;
-    padding: 2.25em;
-    box-sizing: border-box;
-    border: solid 1px #DDD;
-    border-radius: 0.5em;
-    font-family: "Source Sans Pro", sans-serif;
-  }
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #eff3f4;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  background-color: #FFF;
+  margin: 0;
+  padding: 2.25em;
+  box-sizing: border-box;
+  border: solid 1px #DDD;
+  border-radius: 0.5em;
+  font-family: "Source Sans Pro", sans-serif;
+  z-index: 2; /* Ensure the form is above the footer */
+}
+
+footer {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-top: auto; /* Push the footer to the bottom */
+}
+
   form .svgContainer {
     position: relative;
     width: 200px;
@@ -230,6 +238,7 @@ right: 15px;
 #home i {
   font-size: 30px;
 }
+
 footer {
   background-color: #f2f2f2;
   padding: 20px;
@@ -241,3 +250,56 @@ footer {
  footer p {
   margin: 0;
  }
+ 
+
+ @media (max-width: 900px) {
+  #home{
+    margin-left: -15px;
+    margin-top: 15px;
+  }
+  #home i{
+    font-size: 45px;
+  }
+  footer {
+    padding: 10px;
+    margin-top: 1120px;
+  }
+  form{
+    width: 125%;
+    margin-top: 35px;
+  }
+}
+
+
+@media (max-width: 450px) {
+  #home{
+    margin-left: -15px;
+  }
+  #home i{
+    font-size: 35px;
+  }
+  footer {
+    padding: 10px;
+    margin-top: 775px;
+  }
+  form{
+    width: 90%;
+    margin-top: 0px;
+  }
+}
+
+
+ @media (max-width: 380px) {
+  #home{
+    margin-left: -15px;
+    margin-top: -5px;
+  }
+  footer {
+    padding: 10px;
+    margin-top: 725px;
+  }
+  form{
+    width: 90%;
+    margin-top: 60px;
+  }
+}
