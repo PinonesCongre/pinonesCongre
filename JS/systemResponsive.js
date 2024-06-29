@@ -1,3 +1,24 @@
+function applyStylesToNavAndFooter(navbar, footer, width, padding) {
+    if (navbar && footer) {
+        navbar.style.width = width;
+        navbar.style.display = 'flex';
+        navbar.style.justifyContent = 'space-between';
+        navbar.style.alignItems = 'center';
+        navbar.style.padding = padding;
+        navbar.style.backgroundColor = '#353a40';
+        navbar.style.color = '#fff';
+
+        footer.style.width = width;
+        footer.style.display = 'flex';
+        footer.style.flexDirection = 'row'; // Mantén la dirección del flex para apilar los elementos
+        footer.style.justifyContent = 'space-between'; // Centra los elementos verticalmente
+        footer.style.backgroundColor = '#353a40';
+        footer.style.color = '#fff';
+        footer.style.fontSize = '14px';
+        footer.style.padding = padding;
+    }
+}
+
 function applyResponsiveStyles() {
     const width = window.innerWidth;
 
@@ -6,71 +27,56 @@ function applyResponsiveStyles() {
     const footer = document.querySelector('.footer');
 
     if (width <= 375) { // iPhone 8 and similar sizes
-        container.style.width = '85%';
+        container.style.width = '84%';
         container.style.marginTop = '45px';
-
-        if (navbar && footer) {
-            navbar.style.width = '95%'; // Ajusta según sea necesario para la vista móvil
-            navbar.style.display = 'flex';
-            navbar.style.justifyContent = 'space-between';
-            navbar.style.alignItems = 'center';
-            navbar.style.padding = '10px 14px';
-            navbar.style.backgroundColor = '#353a40';
-            navbar.style.color = '#fff';
-
+        applyStylesToNavAndFooter(navbar, footer, '92%', '10px 14px');
+        footer.style.marginTop = '25px';
+        footer.style.flexDirection = 'column';
+        footer.style.alignItems = 'center';
+    } else if (width <= 430) { // iPhone 14 Pro (430px de ancho)
+        container.style.width = '89%';
+        container.style.marginTop = '45px';
+        applyStylesToNavAndFooter(navbar, footer, '93%', '10px 14px');
+        footer.style.marginTop = '25px';
+        footer.style.flexDirection = 'column';
+        footer.style.alignItems = 'center';
+    } else if (width <= 412) { // galaxy s20 ultra (412px de ancho)
+            container.style.width = '45%';
+            container.style.marginTop = '45px';
+            applyStylesToNavAndFooter(navbar, footer, '90%', '10px 14px');
             footer.style.marginTop = '25px';
-            footer.style.display = 'flex';
-            footer.style.flexDirection = 'column'; // Cambia la dirección del flex para apilar los elementos
-            footer.style.alignItems = 'center'; // Centra los elementos verticalmente
-            footer.style.backgroundColor = '#353a40';
-            footer.style.color = '#fff';
-            footer.style.fontSize = '14px';
-            footer.style.padding = '10px'; // Añade un padding para separar los elementos del footer
-        }
-    } else if (width <= 1334) { // Adaptación para 1334x750 píxeles
-        container.style.width = '80%'; // Ajusta según sea necesario para este tamaño de pantalla
+            footer.style.flexDirection = 'column';
+            footer.style.alignItems = 'center';
+    } else if (width <= 768) { // iPad Mini (768px de ancho)
+        container.style.width = '65%';
+        container.style.marginTop = '55px';
+        applyStylesToNavAndFooter(navbar, footer, '95%', '10px 18px');
+        footer.style.marginTop = '35px';
+        footer.style.flexDirection = 'column';
+        footer.style.alignItems = 'center';
+    } else if (width <= 1024) { // iPad Pro (1024px de ancho)
+        container.style.width = '60%';
+        container.style.marginTop = '180px';
+        applyStylesToNavAndFooter(navbar, footer, '96%', '15px 18px');
+        footer.style.marginTop = '260px';
+        footer.style.flexDirection = 'column';
+        footer.style.alignItems = 'center';
+    } else if (width <= 1280) { // Adaptación para resolución de 1280px
+        container.style.width = '70%';
         container.style.marginTop = '60px';
-
-        if (navbar && footer) {
-            navbar.style.width = '90%'; // Ajusta según sea necesario para la vista móvil
-            navbar.style.display = 'flex';
-            navbar.style.justifyContent = 'space-between';
-            navbar.style.alignItems = 'center';
-            navbar.style.padding = '10px 14px';
-            navbar.style.backgroundColor = '#353a40';
-            navbar.style.color = '#fff';
-
-            footer.style.marginTop = '40px';
-            footer.style.display = 'flex';
-            footer.style.flexDirection = 'column'; // Cambia la dirección del flex para apilar los elementos
-            footer.style.alignItems = 'center'; // Centra los elementos verticalmente
-            footer.style.backgroundColor = '#353a40';
-            footer.style.color = '#fff';
-            footer.style.fontSize = '14px';
-            footer.style.padding = '10px'; // Añade un padding para separar los elementos del footer
-        }
+        applyStylesToNavAndFooter(navbar, footer, '95%', '10px 20px');
+        footer.style.marginTop = '50px';
+    } else if (width <= 1920) { // Adaptación para Full HD (1920x1080 píxeles)
+        container.style.width = '35%';
+        container.style.marginTop = '70px';
+        applyStylesToNavAndFooter(navbar, footer, '97%', '10px 20px');
+        footer.style.marginTop = '50px';
     } else {
         // Ajusta los estilos para pantallas más grandes si es necesario
         container.style.width = '70%';
         container.style.marginTop = '60px';
-
-        if (navbar && footer) {
-            navbar.style.display = 'flex';
-            navbar.style.justifyContent = 'space-between';
-            navbar.style.alignItems = 'center';
-            navbar.style.padding = '10px 20px';
-            navbar.style.backgroundColor = '#353a40';
-            navbar.style.color = '#fff';
-
-            footer.style.marginTop = '70px';
-            footer.style.display = 'flex';
-            footer.style.flexDirection = 'column'; // Cambia la dirección del flex para apilar los elementos
-            footer.style.alignItems = 'center'; // Centra los elementos verticalmente
-            footer.style.backgroundColor = '#353a40';
-            footer.style.color = '#fff';
-            footer.style.fontSize = '14px';
-            footer.style.padding = '10px'; // Añade un padding para separar los elementos del footer
-        }
+        applyStylesToNavAndFooter(navbar, footer, '85%', '10px 20px');
+        footer.style.marginTop = '70px';
     }
 }
 
