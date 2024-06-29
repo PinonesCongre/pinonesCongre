@@ -6,11 +6,11 @@ function applyResponsiveStyles() {
     const footer = document.querySelector('.footer');
 
     if (width <= 375) { // iPhone 8 and similar sizes
-        container.style.width = '100%';
+        container.style.width = '85%';
         container.style.marginTop = '45px';
 
         if (navbar && footer) {
-            navbar.style.width = '100%'; // Ajusta según sea necesario para la vista móvil
+            navbar.style.width = '95%'; // Ajusta según sea necesario para la vista móvil
             navbar.style.display = 'flex';
             navbar.style.justifyContent = 'space-between';
             navbar.style.alignItems = 'center';
