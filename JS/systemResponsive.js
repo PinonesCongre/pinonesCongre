@@ -32,7 +32,7 @@ function applyResponsiveStyles() {
         container.style.marginTop = '60px';
 
         if (navbar && footer) {
-            navbar.style.width = '100%'; // Ajusta según sea necesario para la vista móvil
+            navbar.style.width = '90%'; // Ajusta según sea necesario para la vista móvil
             navbar.style.display = 'flex';
             navbar.style.justifyContent = 'space-between';
             navbar.style.alignItems = 'center';
