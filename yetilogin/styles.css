@@ -1,50 +1,141 @@
-/* colors */
-html {
-  width: 100%;
-  height: 100%;
-}
-
 body {
-  background-color: #eff3f4;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #000;
+  transition: background-color 0.3s, color 0.3s;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+.navbar, .footer {
+  display: flex;
+ justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #353a40;
+  color: #fff;
+}
+.navbar .left-menu, .navbar .right-menu,
+.footer .left-footer, .footer .right-footer {
+  display: flex;
+  align-items: center;
+}
+.navbar button, .navbar a, .footer a {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+.navbar button:hover, .navbar a:hover, .footer a:hover {
+  background-color: #353a40;
+}
+
+
+.left-footer img {
+  height: 30px; /* Ajusta el tamaño del logo según sea necesario */
+  margin-right: 10px;
+}
+
+.left-footer span {
+  font-weight: bold;
+}
+
+.right-footer {
+  display: flex;
+  align-items: center;
+}
+
+.right-footer img {
+  margin-right: 10px;
+}
+
+.right-footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.right-footer a:hover {
+  text-decoration: underline;
+}
+
+.footer img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.slider {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  background-color: #949494;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  }
+  
+  .slider .thumb {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      background-color: transparent; /* Quitamos el color de fondo */
+      background-image: url('/img/SUN.png'); /* Agregamos la imagen como fondo */
+      background-size: cover; /* Ajustamos el tamaño de la imagen */
+      background-repeat: no-repeat; /* Evitamos que se repita la imagen */
+      background-position: center; /* Centramos la imagen */
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left 0.3s;
+  }
+  
+  .slider .sun {
+      position: absolute;
+      left: 10px;
+      top: 12px;
+      /*color: #ffeb3b;*/
+  }
+  
+  .slider .moon {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      /*color: #88b5cf;*/
+  }
+  
+  .slider.active {
+      background-color: #949494;;
+  }
+  .slider.active .thumb {
+      left: 40px;
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      background-color: transparent; /* Quitamos el color de fondo */
+      background-image: url('/img/MOON.png'); /* Agregamos la imagen como fondo */
+      background-size: cover; /* Ajustamos el tamaño de la imagen */
+      background-repeat: no-repeat; /* Evitamos que se repita la imagen */
+      background-position: center; /* Centramos la imagen */
+      border-radius: 50%;
+      top: 2px;
+      transition: left 0.3s;
+  }
+  
+
+/* Form styles */
 form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: block;
-  width: 100%;
+  margin: 20px auto; /* Adjust margin as needed */
+  padding: 20px;
   max-width: 400px;
   background-color: #FFF;
-  margin: 0;
-  padding: 2.25em;
-  box-sizing: border-box;
   border: solid 1px #DDD;
   border-radius: 0.5em;
   font-family: "Source Sans Pro", sans-serif;
-  z-index: 2; /* Ensure the form is above the footer */
+  z-index: 2; /* Ensure the form is above other content */
 }
-
-footer {
-  background-color: #f2f2f2;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  margin-top: auto; /* Push the footer to the bottom */
-}
-
   form .svgContainer {
     position: relative;
     width: 200px;
@@ -238,68 +329,86 @@ right: 15px;
 #home i {
   font-size: 30px;
 }
-
-footer {
-  background-color: #f2f2f2;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
- }
- 
- footer p {
-  margin: 0;
- }
- 
-
- @media (max-width: 900px) {
-  #home{
-    margin-left: -15px;
-    margin-top: 15px;
-  }
-  #home i{
-    font-size: 45px;
-  }
-  footer {
-    padding: 10px;
-    margin-top: 1120px;
-  }
-  form{
-    width: 125%;
-    margin-top: 35px;
-  }
+/* Estilos para modo oscuro */
+.dark-mode {
+  background-color: #111828;
+  color: #fff;
 }
 
-
-@media (max-width: 450px) {
-  #home{
-    margin-left: -15px;
-  }
-  #home i{
-    font-size: 35px;
-  }
-  footer {
-    padding: 10px;
-    margin-top: 775px;
-  }
-  form{
-    width: 90%;
-    margin-top: 0px;
-  }
+.dark-mode .navbar {
+  background-color: #353a40;
 }
 
+.dark-mode .navbar button,
+.dark-mode .navbar a {
+  color: #fff;
+}
 
- @media (max-width: 380px) {
-  #home{
-    margin-left: -15px;
-    margin-top: -5px;
-  }
-  footer {
-    padding: 10px;
-    margin-top: 725px;
-  }
-  form{
-    width: 90%;
-    margin-top: 60px;
-  }
+.dark-mode .slider {
+  background-color: #616161;
+}
+
+.dark-mode .slider.active {
+  background-color: #616161;
+}
+
+.dark-mode form {
+  background-color: #384152;
+  color: #fff;
+  border: solid 1px #444;
+}
+
+.dark-mode form label {
+  color: #eee;
+}
+
+.dark-mode form input[type=email],
+.dark-mode form input[type=text],
+.dark-mode form input[type=number],
+.dark-mode form input[type=url],
+.dark-mode form input[type=search],
+.dark-mode form input[type=password] {
+  background-color: #384152;
+  border: solid 2px #666;
+  color: #eee;
+}
+
+.dark-mode form input[type=email]:focus,
+.dark-mode form input[type=text]:focus,
+.dark-mode form input[type=number]:focus,
+.dark-mode form input[type=url]:focus,
+.dark-mode form input[type=search]:focus,
+.dark-mode form input[type=password]:focus {
+  border-color: #248fc4;
+}
+
+.dark-mode form button {
+  background-color: #4eb8dd;
+  color: #fff;
+}
+
+.dark-mode form button:hover,
+.dark-mode form button:active {
+  background-color: #217093;
+}
+
+.dark-mode .footer {
+  background-color: #353a40;
+  color: #fff;
+}
+
+.dark-mode .left-footer span {
+  font-weight: bold;
+}
+
+.dark-mode .right-footer a {
+  color: #bbb;
+}
+
+.dark-mode .right-footer a:hover {
+  text-decoration: underline;
+}
+
+.dark-mode footer img {
+  filter: brightness(0) invert(1);
 }

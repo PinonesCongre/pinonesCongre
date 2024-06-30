@@ -27,14 +27,14 @@ function applyResponsiveStyles() {
     const footer = document.querySelector('.footer');
 
     if (width <= 375) { // iPhone 8 and similar sizes
-        container.style.width = '84%';
+        container.style.width = '80%';
         container.style.marginTop = '45px';
         applyStylesToNavAndFooter(navbar, footer, '92%', '10px 14px');
         footer.style.marginTop = '25px';
         footer.style.flexDirection = 'column';
         footer.style.alignItems = 'center';
     } else if (width <= 430) { // iPhone 14 Pro (430px de ancho)
-        container.style.width = '89%';
+        container.style.width = '80%';
         container.style.marginTop = '45px';
         applyStylesToNavAndFooter(navbar, footer, '93%', '10px 14px');
         footer.style.marginTop = '25px';
@@ -62,9 +62,9 @@ function applyResponsiveStyles() {
         footer.style.flexDirection = 'column';
         footer.style.alignItems = 'center';
     } else if (width <= 1280) { // Adaptación para resolución de 1280px
-        container.style.width = '70%';
+        container.style.width = '45%';
         container.style.marginTop = '60px';
-        applyStylesToNavAndFooter(navbar, footer, '95%', '10px 20px');
+        applyStylesToNavAndFooter(navbar, footer, '97%', '10px 20px');
         footer.style.marginTop = '50px';
     } else if (width <= 1920) { // Adaptación para Full HD (1920x1080 píxeles)
         container.style.width = '35%';

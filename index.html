@@ -191,6 +191,21 @@
         noButton.style.backgroundColor = '#dc3545';
         yesButton.style.backgroundColor = '';
     });
+
+      // Ejemplo de función de alerta con SweetAlert y tema oscuro
+        function showAlert(message, icon) {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            Swal.fire({
+                text: message,
+                icon: icon,
+                background: isDarkMode ? '#1e1e1e' : '#fff',
+                color: isDarkMode ? '#fff' : '#000',
+                confirmButtonColor: isDarkMode ? '#3085d6' : '#d33',
+            });
+        }
+
+        // Llama a showAlert según sea necesario, por ejemplo:
+        // showAlert('Esto es una alerta', 'success');
     </script>
 
     <!--Actualizacion del mes automatizada-->
