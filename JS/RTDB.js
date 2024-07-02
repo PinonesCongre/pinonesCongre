@@ -30,6 +30,9 @@ $("#form-container").validate({
       digits: true
     },
     superintendente: "required",
+    participacion: {
+      required: true
+    }
   },
   messages: {
     "nombre-completo": "Por favor, ingrese su nombre completo",
@@ -44,7 +47,10 @@ $("#form-container").validate({
       required: "Por favor, ingrese el número de cursos bíblicos",
       digits: "Por favor, ingrese solo números enteros"
     },
-    superintendente: "Por favor, ingrese el nombre de su superintendente"
+    superintendente: "Por favor, ingrese el nombre de su superintendente",
+    participacion: {
+      required: "Por favor, seleccione si participó o no"
+    }
   },
   highlight: function(element) {
     $(element).addClass("input-error");
@@ -65,6 +71,16 @@ $("#form-container").validate({
       fechaEnvio: obtenerFechaActual() // Agrega la fecha y hora actual al objeto "reporte"
     };
 
+    // Asegúrate de que se haya seleccionado una opción de participación
+    if (!reporte.participo) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor, seleccione sí participó o no',
+        icon: 'error'
+      });
+      return false;
+    }
+
     // Función para obtener la fecha y hora actual en formato legible
     function obtenerFechaActual() {
       var fecha = new Date();
@@ -80,40 +96,51 @@ $("#form-container").validate({
       return fechaFormateada;
     }
 
-    // Muestra una alerta de confirmación antes de enviar
-    Swal.fire({
-      title: '¿Está seguro de que desea enviar el informe?',
-      showCancelButton: true,
-      confirmButtonText: 'Enviar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
+   // Muestra una alerta de confirmación antes de enviar
+   Swal.fire({
+    title: '¿Está seguro de que desea enviar el informe?',
+    showCancelButton: true,
+    confirmButtonText: 'Enviar',
+    cancelButtonText: 'Cancelar'
+}).then((result) => {
+    if (result.isConfirmed) {
+        // Aquí va tu lógica para enviar los datos (por ejemplo, a Firebase)
         db.push(reporte)
-          .then(function() {
-            console.log("Datos del formulario guardados en Realtime Database");
-            Swal.fire({
-              title: '¡Buen trabajo!',
-              text: 'Informe guardado correctamente',
-              icon: 'success'
-            }).then(() => {
-              // Añade la última alerta para refrescar la página
-              Swal.fire({
-                title: 'Para enviar otro informe, por favor, refresque la página.',
-                icon: 'info',
-                confirmButtonText: 'Aceptar'
-              });
-              form.reset();
+            .then(function() {
+                console.log("Datos del formulario guardados en Realtime Database");
+                Swal.fire({
+                    title: '¡Buen trabajo!',
+                    text: 'Informe guardado correctamente',
+                    icon: 'success'
+                }).then(() => {
+                    // Resetea el formulario después de enviarlo
+                    document.getElementById('report-form').reset();
+                    // Restablece la selección de los botones si es necesario
+                    $(".yes, .no").removeClass("selected");
+                    // Puedes recargar la página si lo necesitas
+                    // location.reload();
+                });
+            })
+            .catch(function(error) {
+                console.error("Error al escribir los datos en Realtime Database: ", error);
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: 'Los datos no fueron guardados',
+                    icon: 'error'
+                });
             });
-          })
-          .catch(function(error) {
-            console.error("Error al escribir los datos en Realtime Database: ", error);
-            Swal.fire({
-              title: '¡Oops!',
-              text: 'Los datos no fueron guardados',
-              icon: 'error'
-            });
-          });
-      }
-    });
-  }
+    }
 });
+}
+});
+
+// Función para establecer el valor del campo de participación
+function setParticipacion(valor) {
+  $("#participacion").val(valor ? 'Sí' : 'No');
+  $(".yes, .no").removeClass("selected");
+  if (valor) {
+    $(".yes").addClass("selected");
+  } else {
+    $(".no").addClass("selected");
+  }
+}

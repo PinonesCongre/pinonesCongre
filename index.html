@@ -19,26 +19,12 @@
     <!--Estilo nuevo-->
     <link rel="stylesheet" href="/CSS/indexnew.css">
     <script src="/JS/systemResponsive.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.min.js"></script>
+  
 </head>
 <body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            Swal.fire({
-                title: '¿Necesita ayuda para enviar su informe?',
-                showCancelButton: true,
-                confirmButtonText: 'Necesito ayuda',
-                cancelButtonText: 'Tengo la información',
-                cancelButtonColor: '#3085d6',
-                confirmButtonColor: '#d33',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'indexpasoapaso.html'; // Redirige si se selecciona 'Necesito ayuda'
-                } else {
-                    // No hacer nada o redirigir a otra página si se desea
-                }
-            });
-        });
-        </script>
+    <script src="/JS/ayudaAviso.js"></script>
         
     <div class="navbar">
         <div class="left-menu">
@@ -56,12 +42,12 @@
     
     <div class="container" id="form-container">
         <h1 id="form-title">Informes mes de <span id="current-month"></span> 2024</h1>
-        <form>
+        <form id="report-form" onsubmit="validateForm(event)">
             <label for="nombre-completo">Nombre Completo:</label>
             <input type="text" id="nombre-completo" name="nombre-completo" placeholder="Nombre completo" required>
 
             <label for="rol">Rol:</label>
-            <select type="text" id="rol" name="rol" required>
+            <select id="rol" name="rol" required>
                 <option value="">Seleccione una opción</option>
                 <option value="Publicador">Publicador</option>
                 <option value="Precursor Auxiliar">Precursor Auxiliar</option>
@@ -72,33 +58,31 @@
             <input type="number" id="hours" name="numero-horas" placeholder="Número de horas" required>
 
             <label for="cursosBiblicos">Número de Cursos Bíblicos:</label>
-            <input type="number" id="bibleCourse" name="cursoBiblicos" placeholder="Número de cursos biblicos"    required>
+            <input type="number" id="bibleCourse" name="cursoBiblicos" placeholder="Número de cursos biblicos" required>
 
             <label>
                 Participó en alguna faceta de la predicación durante el mes:
             </label>
-                <div>
-                    <button type="button" class="yes" onclick="setParticipacion(true)">Sí</button>
-                    <button type="button" class="no" onclick="setParticipacion(false)">No</button>
-                </div>
-                <input type="hidden" id="participacion" name="participacion">
-            
+            <div>
+                <button type="button" class="yes" onclick="setParticipacion(true)" data-tippy-content="Seleccione 'Sí' si participó">Sí</button>
+                <button type="button" class="no" onclick="setParticipacion(false)" data-tippy-content="Seleccione 'No' si no participó">No</button>
+            </div>
+            <input type="hidden" id="participacion" name="participacion">
 
             <label for="superintendente">Superintendente de Servicio:</label>
             <select id="superintendente" name="superintendente" required>
                 <option value="">Seleccione una opción</option>
                 <option value="Alfonso.P Grupo 1">Alfonso.P Grupo 1</option>
-                    <option value="Rafael.G Grupo 2">Rafael.G Grupo 2</option>
-                    <option value="Alberto.G Grupo 3">Alberto.G Grupo 3</option>
-                    <option value="Josue.T Grupo 4">Josue.T Grupo 4</option>
-                    <option value="Mario.B & Marco.H Grupo 5">Mario.B & Marco.H Grupo 5</option>
-                <!-- Añadir opciones aquí -->
+                <option value="Rafael.G Grupo 2">Rafael.G Grupo 2</option>
+                <option value="Alberto.G Grupo 3">Alberto.G Grupo 3</option>
+                <option value="Josue.T Grupo 4">Josue.T Grupo 4</option>
+                <option value="Mario.B & Marco.H Grupo 5">Mario.B & Marco.H Grupo 5</option>
             </select>
 
             <label for="notes">Notas:</label>
             <textarea id="notes" name="notes" placeholder="Escriba sus notas aquí"></textarea>
 
-            <button type="reset"  id="clear-btn" class="clear-btn">Limpiar</button>
+            <button type="reset" id="clear-btn" class="clear-btn">Limpiar</button>
             <button type="submit" id="submit-btn">Enviar</button>
         </form>
     </div>
@@ -118,7 +102,7 @@
         </div>
     </div>
     
-
+  
     <div class="banner" id="info-banner">
         <h2>Información sobre la página</h2>
         <p>Este sitio web ha sido desarrollado con la intención de servir a la comunidad de manera gratuita y sin fines de lucro. Fue creado como respuesta a una necesidad en la congregación piñones, con el objetivo de facilitar la comunicación y la difusión de información relevante.</p>
@@ -128,233 +112,25 @@
         <h3>Congregacion Piñones</h3>
         <button class="close-btn" id="close-banner"><i class="fas fa-door-closed"></i></button>
     </div>
+    <script src="/JS/banner.js"></script>
 
-    <script>
-        function setParticipacion(participo) {
-            var yesButton = document.querySelector('.yes');
-            var noButton = document.querySelector('.no');
-            var hiddenInput = document.getElementById('participacion');
+    <script src="/JS/participo.js"></script>
 
-            if (participo) {
-                yesButton.classList.add('selected');
-                noButton.classList.remove('selected');
-                hiddenInput.value = 'Sí';
-            } else {
-                yesButton.classList.remove('selected');
-                noButton.classList.add('selected');
-                hiddenInput.value = 'No';
-            }
-        }
-    </script>
-
-     <script>
-        // Función para activar/desactivar el modo oscuro
-        function toggleDarkMode() {
-            const body = document.body;
-            const darkModeToggle = document.getElementById('dark-mode-toggle');
-            const isDarkMode = localStorage.getItem('darkMode') === 'true';
-
-            if (isDarkMode) {
-                body.classList.add('dark-mode');
-                darkModeToggle.classList.add('active');
-            } else {
-                body.classList.remove('dark-mode');
-                darkModeToggle.classList.remove('active');
-            }
-        }
-
-        // Función para guardar el estado del modo oscuro en localStorage
-        function saveDarkModeState(isDarkMode) {
-            localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
-        }
-
-        // Evento al hacer click en el toggle del modo oscuro
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        darkModeToggle.addEventListener('click', () => {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-            darkModeToggle.classList.toggle('active');
-
-            // Guarda el estado del modo oscuro
-            const isDarkMode = body.classList.contains('dark-mode');
-            saveDarkModeState(isDarkMode);
-        });
-
-        // Cargar el estado del modo oscuro al cargar la página
-        toggleDarkMode();
-    </script>
-
-    <script>
-        const infoButton = document.getElementById('info');
-    const banner = document.getElementById('info-banner');
-    const closeBannerButton = document.getElementById('close-banner');
-
-    infoButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        banner.style.display = 'block';
-    });
-
-    closeBannerButton.addEventListener('click', () => {
-        banner.style.display = 'none';
-    });
-
-    const yesButton = document.querySelector('.answer-buttons .yes');
-    const noButton = document.querySelector('.answer-buttons .no');
-
-    yesButton.addEventListener('click', () => {
-        yesButton.style.backgroundColor = '#28a745';
-        noButton.style.backgroundColor = '';
-    });
-
-    noButton.addEventListener('click', () => {
-        noButton.style.backgroundColor = '#dc3545';
-        yesButton.style.backgroundColor = '';
-    });
-
-      // Ejemplo de función de alerta con SweetAlert y tema oscuro
-        function showAlert(message, icon) {
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            Swal.fire({
-                text: message,
-                icon: icon,
-                background: isDarkMode ? '#1e1e1e' : '#fff',
-                color: isDarkMode ? '#fff' : '#000',
-                confirmButtonColor: isDarkMode ? '#3085d6' : '#d33',
-            });
-        }
-
-        // Llama a showAlert según sea necesario, por ejemplo:
-        // showAlert('Esto es una alerta', 'success');
-    </script>
+    <script src="/JS/activarmododark.js"></script>
 
     <!--Actualizacion del mes automatizada-->
-    
-    <script>
-        // Función para actualizar el mes
-        function actualizarMes() {
-          // Obtiene la fecha actual
-          var currentDate = new Date();
-        
-          // Obtiene el elemento del mes
-          var monthElement = document.getElementById('current-month');
-        
-          // Obtiene el mes anterior (teniendo en cuenta que los meses comienzan desde 0)
-          var previousMonth = currentDate.getMonth() - 1;
-        
-          // Si el mes actual es enero, ajusta el mes anterior a diciembre del año anterior
-          if (previousMonth < 0) {
-            previousMonth = 11; // diciembre es el mes 11
-          }
-        
-          // Actualiza el contenido del elemento del mes
-          monthElement.textContent = obtenerNombreDelMes(previousMonth + 1);
-        }
-      
-        // Función para obtener el nombre del mes según su número
-        function obtenerNombreDelMes(month) {
-          var meses = [
-            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-          ];
-          return meses[month - 1];
-        }
-      
-        // Actualiza el mes inicialmente
-        actualizarMes();
-      
-        // Programa la actualización del mes cada 20 días (en milisegundos)
-        setInterval(actualizarMes, 20 * 24 * 60 * 60 * 1000);
-      </script>
-      
+    <script src="/JS/actualizacionMes.js"></script>  
       
     <script src="/JS/RTDB.js"></script>
     
     <script src="/JS/publicador.js"></script>
     
     <!-- Publicador -->
-    <script>
-      // Espera a que el documento esté listo
-      document.addEventListener('DOMContentLoaded', function () {
-          // Obtén el elemento select del rol
-          var rolSelect = document.getElementById('rol');
-    
-          // Agrega un evento 'change' al select
-          rolSelect.addEventListener('change', function () {
-              // Obtiene el valor seleccionado
-              var selectedValue = rolSelect.value;
-    
-              // Verifica si se seleccionó "Publicador"
-              if (selectedValue === 'Publicador') {
-                  // Muestra el SweetAlert con formato HTML
-                  Swal.fire({
-                      title: 'Aviso',
-                      icon: 'warning',
-                      html: 'Has seleccionado la opción <strong>"Publicador"</strong>.<br><br>' +
-                      '<strong>1) Deberá indicar si participó de alguna manera en el ministerio durante el mes en la casilla.</strong><br>' +
-                      '<strong>2) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
-                      confirmButtonText: 'Aceptar'
-                  });
-              }
-          });
-      });
-    </script>
+   <script src="/JS/publicadors.js"></script>
     <!-- Precursor Regular -->
-    <script>
-      // Espera a que el documento esté listo
-      document.addEventListener('DOMContentLoaded', function () {
-          // Obtén el elemento select del rol
-          var rolSelect = document.getElementById('rol');
-    
-          // Agrega un evento 'change' al select
-          rolSelect.addEventListener('change', function () {
-              // Obtiene el valor seleccionado
-              var selectedValue = rolSelect.value;
-    
-              // Verifica si se seleccionó "Publicador"
-              if (selectedValue === 'Precursor Regular') {
-                  // Muestra el SweetAlert con formato HTML
-                  Swal.fire({
-                      title: 'Aviso',
-                      icon: 'warning',
-                      html: 'Has seleccionado la opción <strong>"Precursor Regular"</strong>.<br><br>' +
-                      '<strong>1) Deberá indicar el numero de horas que dedico al ministerio.</strong><br>' +
-                      '<strong>2) Deberá indicar si participó de alguna manera en el ministerio durante el mes en la casilla.</strong><br>'+
-                      '<strong>3) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
-                      confirmButtonText: 'Aceptar'
-                  });
-              }
-          });
-      });
-    </script>
+     <script src="/JS/precursorRegular.js"></script>
     
     <!-- Precursor Auxiliar-->
-    
-    <script>
-      // Espera a que el documento esté listo
-      document.addEventListener('DOMContentLoaded', function () {
-          // Obtén el elemento select del rol
-          var rolSelect = document.getElementById('rol');
-    
-          // Agrega un evento 'change' al select
-          rolSelect.addEventListener('change', function () {
-              // Obtiene el valor seleccionado
-              var selectedValue = rolSelect.value;
-    
-              // Verifica si se seleccionó "Publicador"
-              if (selectedValue === 'Precursor Auxiliar') {
-                  // Muestra el SweetAlert con formato HTML
-                  Swal.fire({
-                      title: 'Aviso',
-                      icon: 'warning',
-                      html: 'Has seleccionado la opción <strong>"Precursor Auxiliar"</strong>.<br><br>' +
-                      '<strong>1) Deberá indicar el numero de horas que dedico al ministerio.</strong><br>' +
-                      '<strong>2) Deberá indicar si participó de alguna manera en el ministerio durante el mes en la casilla.</strong><br>'+
-                      '<strong>3) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
-                      confirmButtonText: 'Aceptar'
-                  });
-              }
-          });
-      });
-    </script>
+    <script src="/JS/precursosrAuxiliar.js"></script>
 </body>
 </html>

@@ -22,88 +22,7 @@
     <link rel="stylesheet" href="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.css" />
     <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.min.js"></script>
-
-    <style>
-        .form-step {
-            display: none;
-        }
-        .form-step.active {
-            display: block;
-        }
-        .navigation-buttons {
-            margin-top: 20px;
-        }
-        .navigation-buttons button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .navigation-buttons .next-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .navigation-buttons .next-btn:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-        }
-        .navigation-buttons .prev-btn {
-            background-color: #8ec7f3;
-            color: black;
-        }
-        .navigation-buttons .prev-btn:hover {
-            background-color: #ddd;
-            transform: scale(1.05);
-        }
-        .yes, .no {
-            margin-top: 10px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        #submit-btn {
-            display: none;
-        }
-
-            /* Estilos para Tippy.js tema para personas mayores - Modo Normal */
-        .tippy-box {
-        background-color: #8db5e0; /* Fondo gris claro */
-        color: #ffffff; /* Texto oscuro para contraste */
-        border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
-        }
-
-        .tippy-arrow {
-        color: #8db5e0; /* Color azul claro para la flecha en modo normal */
-        }
-
-        /* Tema para el contenido del tooltip */
-        .tippy-content {
-        font-size: 14px; /* Tamaño de fuente legible */
-        padding: 10px 15px; /* Espaciado interior */
-        }
-
-        /* Tema para el título del tooltip */
-        .tippy-content h3 {
-        font-size: 16px; /* Tamaño de título */
-        margin-bottom: 8px; /* Espaciado inferior */
-        color: #ffffff; /* Color de texto más oscuro */
-        }
-
-        /* Estilos para Tippy.js tema para personas mayores - Modo Oscuro */
-        .tippy-box.dark-theme {
-        background-color: #333; /* Fondo oscuro */
-        color: #f0f0f0; /* Texto claro para contraste */
-        border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
-        }
-
-        .tippy-box.dark-theme .tippy-arrow {
-        color: #333; /* Color oscuro para la flecha en modo oscuro */
-        }
-    </style>
-    
+    <link rel="stylesheet" href="/CSS/pasopaso.css">
 </head>
 <body>
     <div class="navbar">
@@ -143,11 +62,11 @@
             </div>
 
             <div class="form-step">
-                <label for="hours">Número de Horas:</label>
+                <label for="horas">Número de Horas:</label>
                 <input type="number" id="hours" name="numero-horas" placeholder="Número de horas" required data-tippy-content="Si es publicador coloque 0 horas">
                 <span class="error-message">Este campo es obligatorio.</span>
 
-                <label for="bibleCourse">Número de Cursos Bíblicos:</label>
+                <label for="cursosBiblicos">Número de Cursos Bíblicos:</label>
                 <input type="number" id="bibleCourse" name="cursoBiblicos" placeholder="Número de cursos bíblicos" required data-tippy-content="Ingrese el número de cursos bíblicos">
                 <span class="error-message">Este campo es obligatorio.</span>
 
@@ -188,69 +107,7 @@
             </div>
         </form>
     </div>
-
-    <script>
-        let currentStep = 0;
-        const steps = $('.form-step');
-
-        function showStep(step) {
-            steps.each(function(index) {
-                $(this).toggleClass('active', index === step);
-            });
-        }
-
-        function validateStep() {
-            const currentStepDiv = steps.eq(currentStep);
-            const inputs = currentStepDiv.find('input[required], select[required], textarea[required]');
-            let valid = true;
-
-            inputs.each(function() {
-                if (!$(this).val()) {
-                    valid = false;
-                    $(this).addClass('invalid');
-                    $(this).next('.error-message').show();
-                } else {
-                    $(this).removeClass('invalid');
-                    $(this).next('.error-message').hide();
-                }
-            });
-
-            return valid;
-        }
-
-        function nextStep() {
-            if (validateStep()) {
-                if (currentStep < steps.length - 1) {
-                    currentStep++;
-                    showStep(currentStep);
-                }
-            }
-        }
-
-        function prevStep() {
-            if (currentStep > 0) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        }
-
-        function setParticipacion(value) {
-            $("#participacion").val(value ? "Sí" : "No");
-            $(".yes").css("background-color", value ? "green" : "");
-            $(".no").css("background-color", value ? "" : "red");
-        }
-
-        $('#current-month').text(new Date().toLocaleString('es-ES', { month: 'long' }));
-
-        // Inicializar tooltips con Tippy.js
-        tippy('[data-tippy-content]', {
-            placement: 'top',
-            animation: 'shift-toward',
-            // theme: 'retro',
-            arrow: true
-        });
-    </script>
-    
+    <script src="/JS/pasoapaso.js"></script>
 
     <!-- ESTA PARTE DEL CODIGO NO SE MODIFICA PARA LA GUIA PASO A PASO DEL ENVIO DEL INFORME-->
     <div class="footer">
@@ -279,230 +136,23 @@
         <button class="close-btn" id="close-banner"><i class="fas fa-door-closed"></i></button>
     </div>
 
-    <script>
-        function setParticipacion(participo) {
-            var yesButton = document.querySelector('.yes');
-            var noButton = document.querySelector('.no');
-            var hiddenInput = document.getElementById('participacion');
+    <script src="/JS/participo.js"></script>
 
-            if (participo) {
-                yesButton.classList.add('selected');
-                noButton.classList.remove('selected');
-                hiddenInput.value = 'Sí';
-            } else {
-                yesButton.classList.remove('selected');
-                noButton.classList.add('selected');
-                hiddenInput.value = 'No';
-            }
-        }
-    </script>
+    <script src="/JS/activarmododark.js"></script>
 
-     <script>
-        // Función para activar/desactivar el modo oscuro
-        function toggleDarkMode() {
-            const body = document.body;
-            const darkModeToggle = document.getElementById('dark-mode-toggle');
-            const isDarkMode = localStorage.getItem('darkMode') === 'true';
-
-            if (isDarkMode) {
-                body.classList.add('dark-mode');
-                darkModeToggle.classList.add('active');
-            } else {
-                body.classList.remove('dark-mode');
-                darkModeToggle.classList.remove('active');
-            }
-        }
-
-        // Función para guardar el estado del modo oscuro en localStorage
-        function saveDarkModeState(isDarkMode) {
-            localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
-        }
-
-        // Evento al hacer click en el toggle del modo oscuro
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        darkModeToggle.addEventListener('click', () => {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-            darkModeToggle.classList.toggle('active');
-
-            // Guarda el estado del modo oscuro
-            const isDarkMode = body.classList.contains('dark-mode');
-            saveDarkModeState(isDarkMode);
-        });
-
-        // Cargar el estado del modo oscuro al cargar la página
-        toggleDarkMode();
-    </script>
-
-    <script>
-        const infoButton = document.getElementById('info');
-    const banner = document.getElementById('info-banner');
-    const closeBannerButton = document.getElementById('close-banner');
-
-    infoButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        banner.style.display = 'block';
-    });
-
-    closeBannerButton.addEventListener('click', () => {
-        banner.style.display = 'none';
-    });
-
-    const yesButton = document.querySelector('.answer-buttons .yes');
-    const noButton = document.querySelector('.answer-buttons .no');
-
-    yesButton.addEventListener('click', () => {
-        yesButton.style.backgroundColor = '#28a745';
-        noButton.style.backgroundColor = '';
-    });
-
-    noButton.addEventListener('click', () => {
-        noButton.style.backgroundColor = '#dc3545';
-        yesButton.style.backgroundColor = '';
-    });
-
-      // Ejemplo de función de alerta con SweetAlert y tema oscuro
-        function showAlert(message, icon) {
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            Swal.fire({
-                text: message,
-                icon: icon,
-                background: isDarkMode ? '#1e1e1e' : '#fff',
-                color: isDarkMode ? '#fff' : '#000',
-                confirmButtonColor: isDarkMode ? '#3085d6' : '#d33',
-            });
-        }
-
-        // Llama a showAlert según sea necesario, por ejemplo:
-        // showAlert('Esto es una alerta', 'success');
-    </script>
+    <script src="/JS/banner.js"></script>
 
     <!--Actualizacion del mes automatizada-->
-    
-    <script>
-        // Función para actualizar el mes
-        function actualizarMes() {
-          // Obtiene la fecha actual
-          var currentDate = new Date();
-        
-          // Obtiene el elemento del mes
-          var monthElement = document.getElementById('current-month');
-        
-          // Obtiene el mes anterior (teniendo en cuenta que los meses comienzan desde 0)
-          var previousMonth = currentDate.getMonth() - 1;
-        
-          // Si el mes actual es enero, ajusta el mes anterior a diciembre del año anterior
-          if (previousMonth < 0) {
-            previousMonth = 11; // diciembre es el mes 11
-          }
-        
-          // Actualiza el contenido del elemento del mes
-          monthElement.textContent = obtenerNombreDelMes(previousMonth + 1);
-        }
+    <script src="/JS/actualizacionMes.js"></script>
       
-        // Función para obtener el nombre del mes según su número
-        function obtenerNombreDelMes(month) {
-          var meses = [
-            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-          ];
-          return meses[month - 1];
-        }
-      
-        // Actualiza el mes inicialmente
-        actualizarMes();
-      
-        // Programa la actualización del mes cada 20 días (en milisegundos)
-        setInterval(actualizarMes, 20 * 24 * 60 * 60 * 1000);
-      </script>
-      
-      
-    <script src="/JS/RTDB.js"></script>
+    <script src="/JS/guidedForm.js"></script> <!-- Envia el formulario guiado a la base de datos-->
     
     <!-- Publicador -->
-    <script>
-      // Espera a que el documento esté listo
-      document.addEventListener('DOMContentLoaded', function () {
-          // Obtén el elemento select del rol
-          var rolSelect = document.getElementById('rol');
-    
-          // Agrega un evento 'change' al select
-          rolSelect.addEventListener('change', function () {
-              // Obtiene el valor seleccionado
-              var selectedValue = rolSelect.value;
-    
-              // Verifica si se seleccionó "Publicador"
-              if (selectedValue === 'Publicador') {
-                  // Muestra el SweetAlert con formato HTML
-                  Swal.fire({
-                      title: 'Aviso',
-                      icon: 'warning',
-                      html: 'Has seleccionado la opción <strong>"Publicador"</strong>.<br><br>' +
-                      '<strong>1) Deberá indicar si participó de alguna manera en el ministerio durante el mes en la casilla.</strong><br>' +
-                      '<strong>2) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
-                      confirmButtonText: 'Aceptar'
-                  });
-              }
-          });
-      });
-    </script>
+   <script src="/JS/publicadors.js"></script>
     <!-- Precursor Regular -->
-    <script>
-      // Espera a que el documento esté listo
-      document.addEventListener('DOMContentLoaded', function () {
-          // Obtén el elemento select del rol
-          var rolSelect = document.getElementById('rol');
-    
-          // Agrega un evento 'change' al select
-          rolSelect.addEventListener('change', function () {
-              // Obtiene el valor seleccionado
-              var selectedValue = rolSelect.value;
-    
-              // Verifica si se seleccionó "Publicador"
-              if (selectedValue === 'Precursor Regular') {
-                  // Muestra el SweetAlert con formato HTML
-                  Swal.fire({
-                      title: 'Aviso',
-                      icon: 'warning',
-                      html: 'Has seleccionado la opción <strong>"Precursor Regular"</strong>.<br><br>' +
-                      '<strong>1) Deberá indicar el numero de horas que dedico al ministerio.</strong><br>' +
-                      '<strong>2) Deberá indicar si participó de alguna manera en el ministerio durante el mes en la casilla.</strong><br>'+
-                      '<strong>3) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
-                      confirmButtonText: 'Aceptar'
-                  });
-              }
-          });
-      });
-    </script>
+    <script src="/JS/precursorRegular.js"></script>
     
     <!-- Precursor Auxiliar-->
-    
-    <script>
-      // Espera a que el documento esté listo
-      document.addEventListener('DOMContentLoaded', function () {
-          // Obtén el elemento select del rol
-          var rolSelect = document.getElementById('rol');
-    
-          // Agrega un evento 'change' al select
-          rolSelect.addEventListener('change', function () {
-              // Obtiene el valor seleccionado
-              var selectedValue = rolSelect.value;
-    
-              // Verifica si se seleccionó "Publicador"
-              if (selectedValue === 'Precursor Auxiliar') {
-                  // Muestra el SweetAlert con formato HTML
-                  Swal.fire({
-                      title: 'Aviso',
-                      icon: 'warning',
-                      html: 'Has seleccionado la opción <strong>"Precursor Auxiliar"</strong>.<br><br>' +
-                      '<strong>1) Deberá indicar el numero de horas que dedico al ministerio.</strong><br>' +
-                      '<strong>2) Deberá indicar si participó de alguna manera en el ministerio durante el mes en la casilla.</strong><br>'+
-                      '<strong>3) El número de cursos bíblicos que dirigió; los demás campos se encuentran deshabilitados.</strong>',
-                      confirmButtonText: 'Aceptar'
-                  });
-              }
-          });
-      });
-    </script>
+    <script src="/JS/precursosrAuxiliar.js"></script>
 </body>
 </html>
